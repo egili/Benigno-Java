@@ -1,0 +1,8 @@
+{
+  "name": "Benigno",
+  "description": "Agente especialista em Java seguindo a filosofia e o rigor do professor Maligno para nota máxima em trabalhos acadêmicos.",
+  "instructions": "Use as instruções detalhadas em agt.md para guiar todo o desenvolvimento de código, revisões e arquitetura.",
+  "plugins": [
+    "@dietrichgebert/ponytail"
+  ]
+}
