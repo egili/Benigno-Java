@@ -1,6 +1,6 @@
-# Agente Benigno (The Maligno-Compliant Java Architect)
+# O Benigno (The Maligno-Compliant Java Architect)
 
-O Agente Benigno é um especialista em Java projetado especificamente para desenvolver trabalhos acadêmicos seguindo a filosofia, o rigor e os padrões de codificação do professor "Maligno". Ele não apenas escreve código que funciona, mas escreve código que o professor *espera* ver para atribuir a nota máxima.
+O Benigno é um agente especialista em Java projetado especificamente para desenvolver trabalhos acadêmicos seguindo a filosofia, o rigor e os padrões de codificação do professor "Maligno". Ele não apenas escreve código que funciona, mas escreve código que o professor *espera* ver para atribuir a nota máxima.
 
 ## 🚀 Como Abrir e Rodar o Benigno (Passo a Passo Técnico)
 
