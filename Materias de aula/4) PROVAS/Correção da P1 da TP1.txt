@@ -1,0 +1,118 @@
+public class Investimento implements Cloneable
+{
+    private int cod;
+    private String descr;
+    private Data abertura;
+    private double valor, taxa;    
+
+    public Investimento (int c, String d, Data a, double v, double t) throws Exception
+    {
+        if (c<=0) throw new Exception ("Código inválido");
+        if (d==null || d.equals("")) throw new Exception ("Descrição inválida");
+        if (a==null) throw new Exception ("Data de abertura inválida");
+        if (v<=0) throw new Exception ("Valor inválida");
+        if (t<=0) throw new Exception ("Taxa inválida");
+
+        this.cod=c;
+        this.descr=d;
+        this.abertura=(Data)d.clone(); // A T E N Ç Ã O
+        this.valor=v;
+        this.taxa=t;
+    }
+
+    public void aplicar (double v) throws Exception
+    {
+        if (v<=0) throw new Exception ("Valor inválido");
+        this.valor += v;
+    }
+
+    public void resgatar (double v) throws Exception
+    {
+        if (v<=0 || v>this.valor) throw new Exception ("Valor inválido");
+        this.valor -= v;
+    }
+
+    public double getValorProjetado (int qtdMeses) throws Exception
+    {
+        if (qtdMeses<=0) throw new Exception ("Quantidade inválida");
+        return this.valor*Math.pow(1+this.taxa,qtdMeses);
+    }
+
+    @Override
+    public String toString ()
+    {
+        return "Código.....: " + this.cod      + "\n" +
+               "Descrição..: " + this.descr    + "\n" +
+               "Dt.Abertura: " + this.abertura + "\n" +
+               "Valor......: " + this.valor    + "\n" +
+               "Taxa.......: " + this.taxa;
+    }
+
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj==this) return true;
+        if (obj==null) return false;
+
+        if (obj.getClass()!=this.getClass()) return false;
+        Invetimento inv = (Investimento)obj;
+
+        if (this.cod!=inv.cod) return false;
+        if (!this.descr.equals(inv.descr)) return false;
+        if (!this.abertura.equals(inv.abertura)) return false;
+        if (this.valor!=inv.valor) return false;
+        if (this.taxa!=inv.taxa) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode ()
+    {
+        int retorno=1;
+
+        retorno=retorno*2 + ((Integer)this.cod).hashCode();
+        retorno=retorno*2 + this.descr.hashCode();
+        retorno=retorno*2 + this.abertura.hashCode();
+        retorno=retorno*2 + ((Double)this.valor).hashCode();
+        retorno=retorno*2 + ((Double)this.taxa).hashCode();
+
+        if (retorno<0) retorno = -retorno;
+        return retorno;
+    }
+
+    /*
+    public void prolonga (int qtd) throws Exception
+    {
+        if (qtd<=0) throw new Exception ("quantidade inválida");
+        this.abertura.avanceVariosDias(qtd);
+    }
+    */
+
+    // construtor de cópia
+    public Investimento (Investimento modelo) throws Exception
+    {
+        if (modelo==null) throw new Exception ("Modelo ausente");
+
+        this.cod     =modelo.cod;
+        this.descr   =modelo.descr;
+        this.abertura=modelo.abertura; // A T E N Ç Ã O: se o método acima existisse, aqui deveríamos ter feito um deep copy
+        this.valor   =modelo.valor;
+        this.taxa    =modelo.taxa;
+    }
+
+    @Override
+    public Object clone ()
+    {
+        Investimento retorno=null;
+
+        try
+        {
+            retorno = new Investimento (this);
+        }
+        catch (Exception erro)
+        {} // sei que não vai dar erro
+
+        return retorno;
+    }
+}

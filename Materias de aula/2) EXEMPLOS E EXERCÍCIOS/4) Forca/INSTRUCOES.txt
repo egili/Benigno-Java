@@ -1,0 +1,24 @@
+A presente atividade consiste em implementar um jogo de FORCA.
+
+O arquivo Main.java contem a main e sua implementação já está
+completa.
+
+O arquivo Teclado.java contem a classe Teclado com seus vários
+métodos para obter dados digitados no teclado. Sua implementação
+já está completa.
+
+O arquivo BancoDePalavras.java contem a classe BancoDePalavras
+com seu único método static. Sua implementação já está completa.
+
+TODOS os demais arquivos têm alguns métodos para serem
+implementados por vocês. Em cada método há um comentário para
+indicar o que aquele método deveria fazer, orientando sua
+implementação.
+
+Faça um programa de teste (classe com main) para testar
+COMPLETAMENTE cada uma das classes que contém métodos feitos
+por você individualmente . Isto é importante para que possamos
+ter certeza e que todas funcionam COMPLETAMENTE, uma vez que nem
+todos os métodos de todas elas são usado no jogo da Forca.
+
+Ao trabalho!

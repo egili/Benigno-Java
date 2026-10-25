@@ -1,0 +1,21 @@
+INSTRUMENTOS DE AVALIAÇÃO
+=========================
+Duas provas regulares, Pv1 e Pv2.
+Uma prova de recuperação REC, facultativa;
+N trabalhos, Tb1,...,TbN, realizados individualmente ou em grupos, sempre com prazos compatíveis com a complexidade de dada trabalho e com pesos Ps1,...,PsN também compatíveis com a complexidade de cada trabalho.
+A nota PI do Projeto Integrador do semestre.
+
+CRITÉRIOS DE AVALIAÇÃO
+======================
+A média de provas, MPv, será a média ponderada das provas Pv1 e Pv2, respectivamente com pesos 1 e 2.
+Se MPv<=5 então o aluno faz a REC e MPv será recalculada e se tornará a média aritmética entre seu valor original e a nota da REC.
+
+A média de trabalhos, MTb, será a média ponderada dos trabalhos Tb1,...,TbN realizados, com pesos Ps1,...,PsN.
+Não há propriamente recuperação de trabalhos; o que há é negociação de prazo e redução de nota para viabilizar a entrega. 
+OBS: a negociação deve ser feita antes de expirar o prazo da entrega.
+
+Se MPv<5 ou MTb<5, então a média final MF será calculada como segue:
+MF = MIN(MPv,MTb), sendo MIN uma função que resulta a menor das duas notas que lhe forem fornecidas, e sem importar se o alunos está matriculado ou não no Projeto Integrador do semestre.
+
+Já se MPv>=5 e MTb>=5, então a média final MF será calculada como segue:
+MF=0,6*MPv + 0,3*MTb + 0,1*PI, caso o aluno esteja matriculado no Projeto Integrador do semestre, ou então MF = 0,6*MPv + 0,4*MT, para aqueles que NÃO estiverem matriculados no Projeto Integrador do semestre.

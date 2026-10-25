@@ -1,0 +1,118 @@
+public class Veiculo implements Cloneable
+{
+    private int codigo;
+    private String placa;
+    private Data aquisicao;
+    private int capTanque;
+    private float combAtual, consMedio;
+
+    public Veiculo (int c, String p, Data a, int ct, float ca, float cm) throws Exception
+    {
+        if (c<=0) throw new Excepction ("código inválido");
+        if (p==null || p.equals("") || p.length()!=7) throw new Exception ("placa inválida");
+        if (a==null) throw new Exception ("data ausente");
+        if (ct<=0) throw new Exception ("capacidade inválida");
+        if (ca<0 || ca>ct) throw new Exception ("nível de combustível inválido"));
+        if (cm<=0) throw new Exception ("consumo inválido");
+
+        this.codigo=c;
+        this.placa=p;
+        this.aquisicao=(Data)a.clone();
+        this.capTanque=ct;
+        this.combAtual=ca;
+        this.consMedio=cm; 
+    }
+
+    public void abastecer (float qtdComb) throws Exception
+    {
+        if (qtdComb<=0 || qtdComb>this.capTanque-this.combAtual) throw new Exception ("quantidade inválida");
+        this.combAtual+=qtdComb;
+    }
+
+    public void deslocar (float distancia) throws Exception
+    {
+        if (distancia<=0 || distancia>this.getAutonomia()) throw new Exception("distância inválida");
+        this.combAtual-=distancia*this.consMedio;
+    }
+
+    public float getAutonomia ()
+    {
+        return this.combAtual*this.consMedio;
+    }
+
+    @Override
+    public String toString ()
+    {
+        return "Código...........: " + this.codigo    + "\n" +
+               "Placa............: " + this.placa     + "\n" +
+               "Aquisição........: " + this.aquisicao + "\n" +
+               "Capacidade tanque: " + this.capTanque + "\n" +
+               "Nivel combustível: " + this.combAtual + "\n" +
+               "Consumo médio....: " + this.consMedio;
+    }
+
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (obj==this) return true;
+        if (obj==null) return false;
+
+        if (obj.getClass() != this.getClass()) return false;
+        Veiculo vei = (Veiculo)obj;
+
+        if (this.codigo!=vei.codigo) return false;
+
+        if (!this.placa.equals(vei.placa)) return false;
+        if (!this.aquisicao.equals(vei.aquisicao)) return false;
+
+        if (this.capTanque!=vei.capTanque) return false;
+        if (this.combAtual!=vei.combAtual) return false;
+        if (this.consMedio!=vei.consMedio) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode ()
+    {
+        int retorno = 1;
+
+        retorno = retorno*2 + ((Integer)this.codigo).hashCode();
+
+        retorno = retorno*2 + this.placa.hashCode();
+        retorno = retorno*2 + this.aquisicao.hashCode();
+
+        retorno = retorno*2 + ((Float)this.capTanque).hashCode();
+        retorno = retorno*2 + ((Float)this.combAtual).hashCode();
+        retorno = retorno*2 + ((Float)this.consMedio).hashCode();
+
+        if (retorno<0) retorno = -retorno;
+        return retorno;
+    }
+
+    // construtor de cópia
+    public Veiculo (Veiculo modelo) throws Exception
+    {
+        if (modelo==null) throw new Exception ("modelo ausente");
+
+        this.codigo    = modelo.codigo;
+        this.placa     = modelo.placa;
+        this.aquisicao = modelo.aquisicao; // sem deep copy pq nossa classe não altera atributos da data de aquisição
+        this.capTanque = modelo.capTanque;
+        this.combAtual = modelo.combAtual;
+        this.consMedio = modelo.consMedio;
+    }
+
+    @Override 
+    public Object clone ()
+    {
+        Veiculo retorno=null;
+
+        try
+        {
+            retorno = new Veiculo (this);
+        }
+        catch (Exception erro)
+        {} // sei que não vai dar erro
+    }
+}
