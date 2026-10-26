@@ -14,9 +14,12 @@ Para que o agente e o código gerado funcionem corretamente, você precisará de
 - **Git**: Para clonar o repositório de materiais de aula.
 
 ### 2. Configuração do Agente
-No painel de criação de agentes do OpenCode:
+No OpenCode, você precisa configurar as instruções do agente para executar o Benigno:
+
 - **Nome do Agente**: `Benigno`
-- **Arquivo de Instruções (System Prompt)**: Importe ou cole todo o conteúdo do arquivo `agt.md`.
+- **Instruções (System Prompt)**: 
+  1. Vá até a área de configuração de agentes/personas do OpenCode.
+  2. No campo de "Instruções" ou "System Prompt", cole todo o conteúdo do arquivo `agt.md` deste repositório. É isso que define as regras de ouro do professor.
 - **Configurações de JSON (`opencode.json`)**: Coloque o arquivo `opencode.json` na raiz do seu workspace. O OpenCode lerá as definições de plugins automaticamente:
   ```json
   {
@@ -29,10 +32,12 @@ O Benigno baseia suas respostas em materiais reais. Para que ele funcione:
 - **Repositório de Materiais**: Clone ou copie a pasta `/Materias de aula/` para dentro do seu workspace.
 - **Estrutura de Pastas**: O agente espera encontrar os exemplos organizados em subpastas (ex: `Expl_01`, `Expl_02`), conforme a estrutura original do professor.
 
-### 4. Ciclo de Execução
-1. **Inicie a Sessão**: Abra o chat com o Agente Benigno.
-2. **Forneça o Contexto**: Se estiver iniciando um trabalho, diga: *"Benigno, estou iniciando o Trabalho X. Por favor, analise a pasta de Materias de Aula para definir a arquitetura."*
-3. **Iteração**: Solicite o código $\rightarrow$ O Benigno consulta o `Expl_XX` $\rightarrow$ O Benigno implementa com rigor $\rightarrow$ O plugin Ponytail simplifica a sintaxe.
+### 4. Acessando e Usando o Agente
+Uma vez configurado, para interagir com o Benigno:
+1. **Abra o OpenCode** e selecione o agente `Benigno` na sua lista de agentes.
+2. **Inicie o Chat**: Digite sua primeira mensagem para ativar o contexto.
+3. **Forneça o Contexto**: Se estiver iniciando um trabalho, diga: *"Benigno, estou iniciando o Trabalho X. Por favor, analise a pasta de Materias de Aula para definir a arquitetura."*
+4. **Iteração**: Solicite o código $\rightarrow$ O Benigno consulta o `Expl_XX` $\rightarrow$ O Benigno implementa com rigor $\rightarrow$ O plugin Ponytail simplifica a sintaxe.
 
 
 ## 🧠 Mentalidade do Agente
