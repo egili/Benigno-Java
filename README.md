@@ -19,7 +19,7 @@ No OpenCode, você precisa configurar as instruções do agente para que ele exe
 - **Nome do Agente**: `Benigno`
 - **Instruções (System Prompt)**: 
   1. Vá até a área de configuração de agentes/personas do OpenCode.
-  2. No campo de "Instruções" ou "System Prompt", cole todo o conteúdo do arquivo `agt.md` deste repositório. É isso que define as regras de ouro do professor.
+  2. No campo de "Instruções" ou "System Prompt", cole todo o conteúdo do arquivo `benigno.md` deste repositório. É isso que define as regras de ouro do professor.
 - **Configurações de JSON (`opencode.json`)**: Coloque o arquivo `opencode.json` na raiz do seu workspace. O OpenCode lerá as definições de plugins automaticamente:
   ```json
   {
