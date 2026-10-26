@@ -14,7 +14,7 @@ Para que o agente e o código gerado funcionem corretamente, você precisará de
 - **Git**: Para clonar o repositório de materiais de aula.
 
 ### 2. Configuração do Agente
-No OpenCode, você precisa configurar as instruções do agente para executar o Benigno:
+No OpenCode, você precisa configurar as instruções do agente para que ele executar corretamente o Benigno:
 
 - **Nome do Agente**: `Benigno`
 - **Instruções (System Prompt)**: 
@@ -39,6 +39,25 @@ Uma vez configurado, para interagir com o Benigno:
 3. **Forneça o Contexto**: Se estiver iniciando um trabalho, diga: *"Benigno, estou iniciando o Trabalho X. Por favor, analise a pasta de Materias de Aula para definir a arquitetura."*
 4. **Iteração**: Solicite o código $\rightarrow$ O Benigno consulta o `Expl_XX` $\rightarrow$ O Benigno implementa com rigor $\rightarrow$ O plugin Ponytail simplifica a sintaxe.
 
+---
+
+## 💡 Dicas para Extrair o Melhor do Benigno
+
+Para garantir que a IA não "alucine" ou use padrões modernos demais, utilize estas estratégias:
+
+### 1. A "Sincronização" Inicial
+Antes de pedir código, force o Benigno a ler os materiais. Isso coloca as regras do professor na memória de curto prazo da IA.
+> **Prompt Sugerido:** *"Benigno, leia a pasta `/Materias de aula/` agora e me diga quais são os 3 principais padrões de validação que você encontrou nos exemplos de Agenda. Confirme quando estiver pronto."*
+
+### 2. O "Modo Auditor" (Double Check)
+Após gerar o código, peça para ele mudar a persona para o próprio professor para encontrar falhas.
+> **Prompt Sugerido:** *"Agora, esqueça que você é o Benigno. Você é o Professor Maligno corrigindo este trabalho. Seja rigoroso. Onde você tiraria pontos deste código? Procure por falta de deep copy, erro de estilo Allman ou falta de validação no construtor."*
+
+### 3. Controle de Versão (Java 8)
+Se o código vier com `var`, `records` ou `Streams`, force a simplicidade.
+> **Prompt Sugerido:** *"Benigno, este código está moderno demais. Refatore para Java 8, usando apenas o que foi visto nos exemplos (loops for tradicionais, sem Streams)."*
+
+---
 
 ## 🧠 Mentalidade do Agente
 
@@ -97,4 +116,3 @@ O Benigno utiliza o plugin **Ponytail** para garantir que, embora o código seja
 
 **3. Para revisão de prova/trabalho:**
 > "Analise este código. Ele passaria na correção do Maligno? Verifique se esqueci de clonar algum objeto mutável no construtor ou se o `equals` está usando `instanceof` em vez de `getClass()`."
-
