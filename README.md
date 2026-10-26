@@ -8,7 +8,7 @@ O Benigno é um agente configurado para o ecossistema **OpenCode**. Para ativá-
 
 ### 1. Pré-requisitos e Instalações
 Para que o agente e o código gerado funcionem corretamente, você precisará de:
-- **Ambiente OpenCode**: O harness de agentes instalado e configurado.
+- **Ambiente OpenCode**: O harness de agentes instalado e configurado. [Instruções de Instalação](https://github.com/opencode-ai/opencode)
 - **JDK (Java Development Kit)**: Versão 8 ou superior instalada e configurada no `PATH` do sistema (necessário para compilar e rodar os trabalhos).
 - **IDE de Java**: Recomendado IntelliJ IDEA, Eclipse ou VS Code com extensões de Java.
 - **Git**: Para clonar o repositório de materiais de aula.
