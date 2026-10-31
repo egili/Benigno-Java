@@ -1,4 +1,4 @@
-# O Benigno v2 (The Maligno-Compliant Java Architect)
+# O Benigno (The Maligno-Compliant Java Architect)
 
 O Benigno é um agente do **OpenCode** que escreve e revisa trabalhos de Java no padrão exato que o professor "Maligno" cobra: não só código que funciona, mas código que o professor *espera* ver para dar a nota máxima.
 
