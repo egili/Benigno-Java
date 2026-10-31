@@ -25,13 +25,12 @@ javac -version       # JDK 8 ou superior; no Ubuntu: sudo apt install openjdk-17
 ```
 Configure no OpenCode o provedor/modelo que você já usa (o Benigno e os subagentes usam o modelo da sessão).
 
-### 2. Baixar o repositório na branch `v2`
+### 2. Baixar o repositório
 ```bash
 git clone https://github.com/egili/Benigno-Java.git
 cd Benigno-Java
-git checkout v2
 ```
-Já tem o repositório? Entre na pasta e rode `git fetch && git checkout v2 && git pull`. Enquanto a v2 não for mesclada na `main`, **na `main` os agentes não existem**.
+Já tem o repositório? Entre na pasta e rode `git checkout main && git pull`. O repositório tem só a branch `main`; se você tinha a antiga branch `v2`, ela foi mesclada e removida (`git fetch --prune && git branch -D v2`).
 
 ### 3. Abrir o OpenCode DENTRO da pasta do repositório
 ```bash
@@ -53,7 +52,7 @@ opencode api get "/api/agent?location%5Bdirectory%5D=$PWD" | grep -o '"id":"[a-z
 Deve mostrar **37** (o `benigno` + 36 `maligno/*`). Mostrou 0? Volte aos passos 2 e 3.
 
 ### Se ainda não aparecer
-- `git branch --show-current` precisa mostrar `v2`.
+- `git branch --show-current` precisa mostrar `main`, e `git pull` deve estar em dia.
 - `ls .opencode/agents` precisa listar `benigno.md` e a pasta `maligno`.
 - Digite `/reload` no OpenCode para recarregar a configuração.
 - Veja erros em `~/.local/share/opencode/log/opencode.log`.
