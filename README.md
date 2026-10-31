@@ -14,17 +14,51 @@ benigno (principal) ──► subagentes maligno/* ──► (último caso) 1 ar
 2. Os subagentes não têm ferramentas: respondem com o conhecimento embutido, no formato `REGRA / CÓDIGO / FONTE / ALERTAS`.
 3. Se um tema não estiver coberto, o subagente responde `NAO_COBERTO` apontando **um arquivo**; só então o `benigno` o lê.
 
-## Como usar
+## Passo a passo para usar o Benigno
 
-### Pré-requisitos
-- **OpenCode** instalado.
-- **JDK 8+** no `PATH`.
-- Este repositório aberto como workspace (a pasta `Materias de aula/` precisa estar nele).
+Não há prompt para colar nem configuração global: o `opencode.json` da raiz define o `benigno` como agente padrão e carrega o plugin `ponytail`, e os agentes ficam em `.opencode/agents/`. O que você precisa fazer manualmente:
 
-### Ativação
-Nada para colar: o `opencode.json` na raiz define o `benigno` como agente padrão e carrega o plugin `ponytail`; os agentes ficam em `.opencode/agents/`. Abra o OpenCode na pasta do repositório e converse normalmente.
+### 1. Ter o OpenCode e o JDK
+```bash
+opencode --version   # OpenCode V2 instalado (https://opencode.ai/v2/docs/)
+javac -version       # JDK 8 ou superior; no Ubuntu: sudo apt install openjdk-17-jdk
+```
+Configure no OpenCode o provedor/modelo que você já usa (o Benigno e os subagentes usam o modelo da sessão).
 
-Exemplos:
+### 2. Baixar o repositório na branch `v2`
+```bash
+git clone https://github.com/egili/Benigno-Java.git
+cd Benigno-Java
+git checkout v2
+```
+Já tem o repositório? Entre na pasta e rode `git fetch && git checkout v2 && git pull`. Enquanto a v2 não for mesclada na `main`, **na `main` os agentes não existem**.
+
+### 3. Abrir o OpenCode DENTRO da pasta do repositório
+```bash
+cd ~/caminho/para/Benigno-Java
+opencode
+```
+⚠️ Este é o erro mais comum. O OpenCode procura a pasta `.opencode/` no diretório onde foi aberto **e nos diretórios acima**, nunca nos de baixo. Aberto na pasta que *contém* o repositório (ex.: `~/Documentos/maligno` em vez de `~/Documentos/maligno/Benigno-Java`), ele não encontra o Benigno.
+
+### 4. Selecionar o agente
+- **Sessão nova**: já abre com o `benigno` (é o `default_agent`).
+- **Sessão antiga**: ela guarda o agente com que foi criada. Aperte **Tab** para alternar os agentes primários até aparecer **benigno**, ou abra uma sessão nova.
+- O plugin `ponytail` é instalado sozinho na primeira abertura.
+
+### 5. Conferir (opcional)
+No terminal, dentro da pasta do repositório:
+```bash
+opencode api get "/api/agent?location%5Bdirectory%5D=$PWD" | grep -o '"id":"[a-z/-]*igno[a-z/-]*"' | wc -l
+```
+Deve mostrar **37** (o `benigno` + 36 `maligno/*`). Mostrou 0? Volte aos passos 2 e 3.
+
+### Se ainda não aparecer
+- `git branch --show-current` precisa mostrar `v2`.
+- `ls .opencode/agents` precisa listar `benigno.md` e a pasta `maligno`.
+- Digite `/reload` no OpenCode para recarregar a configuração.
+- Veja erros em `~/.local/share/opencode/log/opencode.log`.
+
+### Exemplos de uso
 > *"Benigno, crie a classe Investimento com código, descrição, data de abertura, valor e taxa, com aplicar e resgatar."*
 > *"Benigno, implemente o Tabuleiro do Jogo da Velha."*
 > *"Benigno, revise este código como o professor corrigiria."*
