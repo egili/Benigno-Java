@@ -1,6 +1,6 @@
 # O Benigno (The Maligno-Compliant Java Architect)
 
-O Benigno é um agente do **OpenCode** que escreve e revisa trabalhos de Java no padrão exato que o professor "Maligno" cobra: não só código que funciona, mas código que o professor *espera* ver para dar a nota máxima.
+O Benigno é um agente do **OpenCode** que escreve e revisa trabalhos de Java no padrão exato que o professor Maligno cobra: não só código que funciona, mas código que o professor *espera* ver para dar a nota máxima.
 
 ## O que mudou na v2
 
@@ -64,7 +64,7 @@ Sem Git? Baixe o ZIP em <https://github.com/egili/Benigno-Java> (botão **Code �
 git clone https://github.com/egili/Benigno-Java.git
 cd Benigno-Java
 ```
-Já tem o repositório? Entre na pasta e rode `git checkout main && git pull`. O repositório tem só a branch `main`; se você tinha a antiga branch `v2`, ela foi mesclada e removida (`git fetch --prune && git branch -D v2`).
+Já tem o repositório? Entre na pasta e rode `git checkout main && git pull`. O repositório tem só a branch `main`.
 
 ### 3. Abrir o OpenCode DENTRO da pasta do repositório
 ```bash
@@ -105,9 +105,9 @@ Deve mostrar **37** (o `benigno` + 36 `maligno/*`). Mostrou 0? Volte aos passos 
 Qualquer outro erro: veja `~/.local/share/opencode/log/opencode.log` (ou peça ao próprio OpenCode para investigar com o guia <https://opencode.ai/v2/docs/troubleshooting/>).
 
 ### Exemplos de uso
-> *"Benigno, crie a classe Investimento com código, descrição, data de abertura, valor e taxa, com aplicar e resgatar."*
-> *"Benigno, implemente o Tabuleiro do Jogo da Velha."*
-> *"Benigno, revise este código como o professor corrigiria."*
+> *"Benigno, crie a classe Investimento com código, descrição, data de abertura, valor e taxa, com aplicar e resgatar."*  <br />
+> *"Benigno, implemente o Tabuleiro do Jogo da Velha."* <br />
+> *"Benigno, revise este código como o professor corrigiria."* <br />
 
 ### Compilação
 Como as mensagens de exceção têm acento, compile com `javac -encoding UTF-8 *.java`.
@@ -131,7 +131,7 @@ Como as mensagens de exceção têm acento, compile com `javac -encoding UTF-8 *
 
 O material do professor diverge entre si. A v2 adota:
 
-- **Prioridade entre fontes:** caderno (aulas de 2026) > correções de prova > exemplos recentes (Data, Horario) > apostila > exemplos antigos.
+- **Prioridade entre fontes:** caderno passado em aula > correções de prova > exemplos recentes (Data, Horario) > apostila > exemplos antigos.
 - **Mensagens de exceção com acento** (`"Nome inválido"`, `"Modelo ausente"`).
 - **`hashCode` da correção da prova:** base 1, multiplicador 2, wrapper por cast, trata negativo.
 - **Constantes em `MAIUSCULAS_COM_UNDERSCORE`** (regra do caderno e da apostila).
