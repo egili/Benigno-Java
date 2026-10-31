@@ -2,9 +2,9 @@
 
 O Benigno é um agente do **OpenCode** que escreve e revisa trabalhos de Java no padrão exato que o professor Maligno cobra: não só código que funciona, mas código que o professor *espera* ver para dar a nota máxima.
 
-## O que mudou na v2
+## Como funciona
 
-Na v1, o agente relia a pasta `Materias de aula/` a cada pedido, gastando muitos tokens. Na v2, todo o material (apostila, caderno, exemplos, provas, trabalho) foi lido **uma vez** e destilado em **36 subagentes especialistas** (`maligno/*`), cada um com as regras e os trechos de código do professor sobre um único tema.
+Todo o material (apostila, caderno, exemplos, provas, trabalho) foi lido **uma vez** e destilado em **36 subagentes especialistas** (`maligno/*`), cada um com as regras e os trechos de código do professor sobre um único tema.
 
 ```
 benigno (principal) ──► subagentes maligno/* ──► (último caso) 1 arquivo de Materias de aula/
@@ -133,7 +133,7 @@ Como as mensagens de exceção têm acento, compile com `javac -encoding UTF-8 *
 
 ## Decisões de padronização
 
-O material do professor diverge entre si. A v2 adota:
+O material do professor diverge entre si. O Benigno adota:
 
 - **Prioridade entre fontes:** caderno passado em aula > correções de prova > exemplos recentes (Data, Horario) > apostila > exemplos antigos.
 - **Mensagens de exceção com acento** (`"Nome inválido"`, `"Modelo ausente"`).
