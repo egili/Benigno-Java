@@ -1,7 +1,6 @@
 {
-  "name": "Benigno",
-  "description": "Agente especialista em Java seguindo a filosofia e o rigor do professor Maligno para nota máxima em trabalhos acadêmicos.",
-  "instructions": "Use as instruções detalhadas em benigno.md para guiar todo o desenvolvimento de código, revisões e arquitetura.",
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "benigno",
   "plugins": [
     "@dietrichgebert/ponytail"
   ]
