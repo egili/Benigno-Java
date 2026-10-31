@@ -78,6 +78,10 @@ opencode
 - **Sessão antiga**: ela guarda o agente com que foi criada. Aperte **Tab** para alternar os agentes primários até aparecer **benigno**, ou abra uma sessão nova.
 - O plugin `ponytail` é instalado sozinho na primeira abertura.
 
+Assim deve ficar o OpenCode aberto na pasta certa, com o **Benigno** selecionado (rodapé do campo de texto e caminho terminando em `Benigno-Java:main`):
+
+![OpenCode aberto com o agente Benigno](docs/opencode-benigno.png)
+
 ### 5. Conferir (opcional)
 No terminal, dentro da pasta do repositório:
 ```bash
