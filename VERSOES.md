@@ -1,6 +1,6 @@
 # Log de versões do Benigno
 
-Evolução do agente Benigno, da primeira versão à versão com Docker, com as funcionalidades que mudaram em cada uma.
+Evolução das versões do agente Benigno, com as funcionalidades que mudaram em cada uma.
 
 ## Resumo
 
