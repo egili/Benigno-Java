@@ -201,3 +201,7 @@ O material do professor diverge entre si. O Benigno adota:
 - **Auditoria:** em trabalho valendo nota, peça *"rode o auditor"* antes de entregar. Ele lista onde o professor tiraria pontos (–1,5 por método obrigatório errado, faltando ou desnecessário).
 - **Java 8:** o Benigno evita `var`, `record`, streams e lambdas; se aparecer algo moderno, peça para refatorar.
 - **Índice de materiais:** `.opencode/indice-materiais.md` mapeia cada tema ao arquivo de origem.
+
+## Histórico de versões
+
+Para acessar o histórico de versões do Benigno, [clique aqui](VERSOES.md).
