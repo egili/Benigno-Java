@@ -202,6 +202,16 @@ O material do professor diverge entre si. O Benigno adota:
 - **Java 8:** o Benigno evita `var`, `record`, streams e lambdas; se aparecer algo moderno, peça para refatorar.
 - **Índice de materiais:** `.opencode/indice-materiais.md` mapeia cada tema ao arquivo de origem.
 
+## Como colaborar
+
+Achou um erro, uma regra do professor mal representada ou tem uma ideia de melhoria? Há três caminhos:
+
+- **Abrir uma issue:** em <https://github.com/egili/Benigno-Java/issues>, descreva o problema com o pedido que você fez ao Benigno, o código gerado e o que o professor cobraria. Se for uma regra do material, cite a fonte (apostila, caderno, prova ou exemplo) e o arquivo em `Materias de aula/`.
+- **Enviar uma alteração (pull request):** faça um *fork* do repositório, crie uma branch com a sua mudança (`git checkout -b minha-mudanca`), faça o commit e abra um *pull request* para a branch `main`. Não é preciso ser colaborador para isso.
+- **Pedir acesso de colaborador:** se você vai contribuir com frequência, peça permissão de escrita ao mantenedor, o `@egili`, pela issue ou pelo contato no perfil do GitHub. Com o acesso, você cria branches no próprio repositório, sem precisar de fork.
+
+Antes de enviar uma alteração, confira que os `.java` continuam compilando com `javac -encoding UTF-8 *.java` e que o padrão das regras (`maligno/*`) não foi quebrado. Mudanças nas regras devem seguir a fonte do professor, não a preferência de quem contribui.
+
 ## Histórico de versões
 
 Para acessar o histórico de versões do Benigno, [clique aqui](VERSOES.md).
