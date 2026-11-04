@@ -206,9 +206,9 @@ O material do professor diverge entre si. O Benigno adota:
 
 Achou um erro, uma regra do professor mal representada ou tem uma ideia de melhoria? Há três caminhos:
 
-- **Abrir uma issue:** em <https://github.com/egili/Benigno-Java/issues>, descreva o problema com o pedido que você fez ao Benigno, o código gerado e o que o professor cobraria. Se for uma regra do material, cite a fonte (apostila, caderno, prova ou exemplo) e o arquivo em `Materias de aula/`.
+- **Abrir uma issue:** em <https://github.com/egili/Benigno-Java/issues>, descreva o problema com o pedido que você fez ao Benigno ou  sua ideia de melhoria`.
 - **Enviar uma alteração (pull request):** faça um *fork* do repositório, crie uma branch com a sua mudança (`git checkout -b minha-mudanca`), faça o commit e abra um *pull request* para a branch `main`. Não é preciso ser colaborador para isso.
-- **Pedir acesso de colaborador:** se você vai contribuir com frequência, peça permissão de escrita ao mantenedor, o `@egili`, pela issue ou pelo contato no perfil do GitHub. Com o acesso, você cria branches no próprio repositório, sem precisar de fork.
+- **Pedir acesso de colaborador:** se você vai contribuir com frequência, peça permissão de escrita no repositõrio.
 
 Antes de enviar uma alteração, confira que os `.java` continuam compilando com `javac -encoding UTF-8 *.java` e que o padrão das regras (`maligno/*`) não foi quebrado. Mudanças nas regras devem seguir a fonte do professor, não a preferência de quem contribui.
 
