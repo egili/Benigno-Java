@@ -10,6 +10,7 @@ Evolução das versões do agente Benigno, com as funcionalidades que mudaram em
 | **v2** | 31/10/2026 | 36 subagentes especialistas e um agente orquestrador |
 | **v3** | 01/11/2026 | Personalidade oposta à do professor Maligno |
 | **v4** | 02/11/2026 | Uso com Docker, sem instalar OpenCode, Git ou JDK |
+| **v5** | 05/11/2026 | Subagentes do simulado da Fila e das classes de teste sem framework |
 
 ---
 
@@ -69,6 +70,28 @@ O conhecimento que estava no prompt e nos materiais foi dividido em **36 subagen
 
 ### Uso
 - O OpenCode precisa ser aberto **dentro** da pasta do repositório, pois só encontra `.opencode/` no diretório atual ou nos superiores.
+
+---
+
+## v5: simulado da Fila e testes sem framework
+
+**Data:** 05/11/2026
+
+Dois subagentes novos e um ajuste no roteamento, para acompanhar o simulado da 2ª prova e para provar que cada classe implementada funciona.
+
+### Funcionalidades
+- **Subagente `simulado-fila`:** traz os requisitos do Simulado da 2ª Prova de 2026 (`PadraoDeFila`, `Fila` e `FilaConsultavel`): o que cada método faz, quando redimensionar o vetor (dobrar ao lotar, reduzir pela metade com 25% ou menos de ocupação), o que deve lançar exceção e os pontos de atenção de cópia, `equals`, `hashCode` e `clone`.
+- **Subagente `testes`:** para cada classe implementada, cria uma classe de teste executável (`<Classe>Teste.java`) que prova que os métodos funcionam como deveriam.
+  - Sem JUnit nem outro framework: só Java puro e `System.out`.
+  - Um `main` que imprime `OK` ou `FALHOU` para cada verificação e, no fim, o total de falhas.
+  - Cobre casos de sucesso, casos de exceção e a cópia profunda de `clone` e do construtor de cópia.
+- **Roteamento atualizado:** o `benigno` passa a encaminhar o simulado para `simulado-fila` e os pedidos de teste para `testes`.
+
+### Como rodar um teste
+```bash
+javac *.java
+java FilaTeste
+```
 
 ---
 

@@ -58,6 +58,8 @@ Nunca use os subagentes `explore`/`general` para ler os materiais: isso gasta os
 | Threads, sockets, cliente/servidor (Continhas) | `threads-sockets` |
 | Trabalho Jogo da Velha | `trabalho-velha` (+ os de cada método) |
 | Exercício da Forca | `trabalho-forca` |
+| Simulado da 2ª Prova (Fila, PadraoDeFila, FilaConsultavel) | `simulado-fila` (+ os de cada método) |
+| Classe de teste para uma classe implementada (sem framework) | `testes` |
 | "O material diz X, está certo?" / dúvida sobre bug do professor | `erratas` |
 | Revisar/corrigir como o professor | `auditor` |
 
