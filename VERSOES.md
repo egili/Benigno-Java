@@ -73,28 +73,6 @@ O conhecimento que estava no prompt e nos materiais foi dividido em **36 subagen
 
 ---
 
-## v5: simulado da Fila e testes sem framework
-
-**Data:** 05/11/2026
-
-Dois subagentes novos e um ajuste no roteamento, para acompanhar o simulado da 2ª prova e para provar que cada classe implementada funciona.
-
-### Funcionalidades
-- **Subagente `simulado-fila`:** traz os requisitos do Simulado da 2ª Prova de 2026 (`PadraoDeFila`, `Fila` e `FilaConsultavel`): o que cada método faz, quando redimensionar o vetor (dobrar ao lotar, reduzir pela metade com 25% ou menos de ocupação), o que deve lançar exceção e os pontos de atenção de cópia, `equals`, `hashCode` e `clone`.
-- **Subagente `testes`:** para cada classe implementada, cria uma classe de teste executável (`<Classe>Teste.java`) que prova que os métodos funcionam como deveriam.
-  - Sem JUnit nem outro framework: só Java puro e `System.out`.
-  - Um `main` que imprime `OK` ou `FALHOU` para cada verificação e, no fim, o total de falhas.
-  - Cobre casos de sucesso, casos de exceção e a cópia profunda de `clone` e do construtor de cópia.
-- **Roteamento atualizado:** o `benigno` passa a encaminhar o simulado para `simulado-fila` e os pedidos de teste para `testes`.
-
-### Como rodar um teste
-```bash
-javac *.java
-java FilaTeste
-```
-
----
-
 ## v3: personalidade oposta ao Maligno
 
 **Data:** 01/11/2026
@@ -139,3 +117,25 @@ docker run -it --rm \
 ### Limitações
 - O modelo fica sob a conta do usuário, não na imagem.
 - Modelos locais como o Ollama não funcionam dentro do container, pois ele não enxerga o `127.0.0.1` do computador. Nesse modo, use modelos do OpenCode ou de um provedor em nuvem.
+
+---
+
+## v5: simulado da Fila e testes sem framework
+
+**Data:** 05/11/2026
+
+Dois subagentes novos e um ajuste no roteamento, para acompanhar o simulado da 2ª prova e para provar que cada classe implementada funciona.
+
+### Funcionalidades
+- **Subagente `simulado-fila`:** traz os requisitos do Simulado da 2ª Prova de 2026 (`PadraoDeFila`, `Fila` e `FilaConsultavel`): o que cada método faz, quando redimensionar o vetor (dobrar ao lotar, reduzir pela metade com 25% ou menos de ocupação), o que deve lançar exceção e os pontos de atenção de cópia, `equals`, `hashCode` e `clone`.
+- **Subagente `testes`:** para cada classe implementada, cria uma classe de teste executável (`<Classe>Teste.java`) que prova que os métodos funcionam como deveriam.
+  - Sem JUnit nem outro framework: só Java puro e `System.out`.
+  - Um `main` que imprime `OK` ou `FALHOU` para cada verificação e, no fim, o total de falhas.
+  - Cobre casos de sucesso, casos de exceção e a cópia profunda de `clone` e do construtor de cópia.
+- **Roteamento atualizado:** o `benigno` passa a encaminhar o simulado para `simulado-fila` e os pedidos de teste para `testes`.
+
+### Como rodar um teste
+```bash
+javac *.java
+java FilaTeste
+```
