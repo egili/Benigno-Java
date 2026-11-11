@@ -196,6 +196,10 @@ O material do professor diverge entre si. O Benigno adota:
 - **Constantes em `MAIUSCULAS_COM_UNDERSCORE`** (regra do caderno e da apostila).
 - **Bugs do material nunca são copiados** (catálogo em `maligno/erratas`), incluindo o NullPointerException do empate em `Velha.java`.
 
+## MDD (Maligno Driven Development)
+
+O Benigno segue o que chamamos de **MDD**: escrever o código pensando no crivo do professor, não só no funcionamento. A explicação teórica (pilares, sintomas de código fora do padrão e escala de descontos) está em [docs/MDD.md](docs/MDD.md).
+
 ## Dicas
 
 - **Auditoria:** em trabalho valendo nota, peça *"rode o auditor"* antes de entregar. Ele lista onde o professor tiraria pontos (–1,5 por método obrigatório errado, faltando ou desnecessário).
