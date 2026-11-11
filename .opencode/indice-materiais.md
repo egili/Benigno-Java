@@ -37,4 +37,5 @@ Use só depois de um `NAO_COBERTO` sem arquivo indicado. Leia **um** arquivo, n�
 | Correção de prova (padrão oficial dos métodos) | `4) PROVAS/Correção da P1 da TP1.txt`, `Correção da P1 da TP2.txt` | auditor, hashcode, clone-copia |
 | Simulado (necessidade dos métodos) | `4) PROVAS/Simulado da P1.pdf`, `Correção do Simulado da P1.txt` | metodos-necessidade |
 | Trabalho Jogo da Velha ⚠️ | `5) TRABALHOS (valendo nota)/` | trabalho-velha |
-| Threads e sockets (Continhas) | caderno p. 28–44 (sem `.java`) | threads-sockets |
+| Threads e sockets (Continhas) | `29) Material sobre o Fazedor de Continhas - Um sistema com arquitetura Cliente-Servidor/Servidor/` e `/Cliente/` (⚠️ bugs em `maligno/erratas`) | threads-sockets |
+| Threads e sockets: teoria | caderno p. 28–44 | threads-sockets |

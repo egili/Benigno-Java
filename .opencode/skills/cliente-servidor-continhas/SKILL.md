@@ -5,7 +5,7 @@ description: Estrutura completa de um projeto cliente/servidor com Threads e Soc
 
 # Projeto cliente/servidor: Servidor de Continhas
 
-**Fonte:** `Materias de aula/conteudos caderno até 25-out.pdf`, páginas 28 a 44 (aulas de 23, 24 e 25/9/26). O caderno é manuscrito e digitalizado, e não há `.java` do professor sobre o tema. Itens marcados **[GENERALIZAÇÃO]** são boas práticas de Java que o caderno não diz. Itens marcados **[RECONSTRUÇÃO]** não estão escritos no caderno.
+**Fontes:** o código do professor em `Materias de aula/29) Material sobre o Fazedor de Continhas - Um sistema com arquitetura Cliente-Servidor/` (pastas `Cliente/` e `Servidor/`, compila com `javac -encoding UTF-8`) e o caderno, `Materias de aula/conteudos caderno até 25-out.pdf`, páginas 28 a 44 (aulas de 23, 24 e 25/9/26). Quando o código e a descrição deste arquivo divergirem, vale o código. Itens marcados **[GENERALIZAÇÃO]** são boas práticas de Java que nem o código nem o caderno dizem.
 
 ## 1. O que o sistema faz
 
@@ -59,7 +59,7 @@ description: Estrutura completa de um projeto cliente/servidor com Threads e Soc
 | `adeus()` | Fecha transmissor, receptor e conexão. "Desfaz todas as conexões e garante que as threads não executem mais" | `void` |
 
 - `espie` e `envie` usam `mutEx` para que duas threads não misturem a leitura. O caderno cita o "atropelo" como o problema que o semáforo evita.
-- **[RECONSTRUÇÃO]** Para `espie` não consumir, é preciso guardar o comunicado lido num atributo, por exemplo `Comunicado proximoComunicado`. O caderno não escreve esse nome. Da mesma forma, `new Semaphore(1, true)` com fairness é uma sugestão, não algo confirmado.
+- No código, `espie` guarda o comunicado lido em `Comunicado proximoComunicado`, e o semáforo é `new Semaphore (1,true)`. Atenção: se `readObject` lançar exceção, `espie` não libera o `mutEx` e a próxima chamada trava (bug do material, ver `maligno/erratas`). Correção: `release()` no `finally`.
 
 ## 5. Cliente
 
@@ -178,9 +178,11 @@ Regras:
 - Não usar o `espie` antes do `envie` na hora do `=`. Sem o `espie`, o cliente pode pegar um comunicado que não é o `Resultado`.
 - Não ter a thread de desligamento no cliente. Sem ela, o cliente fica preso no teclado quando o servidor cai.
 - Não fechar a conexão no `T` e no `desativar`.
+- Ler o comando com `comando.toLowerCase()` sem checar `null`: `Teclado.getUmString()` devolve `null` no Ctrl+D e isso dá NPE. Use `"desativar".equalsIgnoreCase(comando)`.
+- Validar `/ 0` só no cliente. O servidor também precisa recusar a divisão por zero.
 
 ## 11. Confiança das informações
 
 - **Verificado:** páginas 28 a 44 do caderno, lidas uma a uma.
-- **[RECONSTRUÇÃO]:** atributo `proximoComunicado`, `Semaphore(1, true)`, e a forma de guardar o comunicado no `espie`.
-- **[GENERALIZAÇÃO]:** ordem das streams (para evitar travamento), `flush`, e o fato de o cliente ser o único lugar com a thread de desligamento. Esse último é uma decisão do caderno, mas as razões são generalização.
+- **Verificado no código do professor:** atributo `proximoComunicado`, `Semaphore(1, true)`, a forma de guardar o comunicado no `espie`, a ordem das streams na supervisora e no cliente, e os nomes dos métodos e das classes.
+- **[GENERALIZAÇÃO]:** o `flush` no `receba` (o código já faz, mas o motivo é de Java, não do caderno), e o fato de o cliente ser o único lugar com a thread de desligamento. Esse último é uma decisão do caderno, mas as razões são generalização.
