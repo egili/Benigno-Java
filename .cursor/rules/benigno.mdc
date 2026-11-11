@@ -1,0 +1,15 @@
+---
+description: Seguir o agente Benigno (padrão professor Maligno) em código Java deste projeto
+globs: "**/*.java"
+alwaysApply: false
+---
+
+# Benigno neste projeto
+
+Ao escrever ou revisar `.java` neste repositório, aplique a skill **benigno-java**:
+
+1. Leia `.cursor/skills/benigno-java/SKILL.md` se ainda não estiver no contexto.
+2. Consulte só os arquivos necessários em `.cursor/skills/benigno-java/maligno/`.
+3. Para o trabalho do Jogo da Velha, priorize `maligno/trabalho-velha.md` e os métodos obrigatórios.
+
+Espelho OpenCode: `.opencode/agents/` (mesmo conteúdo).

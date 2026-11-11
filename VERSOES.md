@@ -12,7 +12,7 @@ Evolução das versões do agente Benigno, com as funcionalidades que mudaram em
 | **v4** | 02/11/2026 | Uso com Docker, sem instalar OpenCode, Git ou JDK |
 | **v5** | 05/11/2026 | Subagentes do simulado da Fila e das classes de teste sem framework |
 | **v6** | 10/11/2026 | Subagente de threads e sockets com o código do Fazedor de Continhas; contagem corrigida para 38 subagentes |
-
+| **v7** | 11/11/2026 | Versão para o uso do agente pelo cursor |
 ---
 
 ## v1: agente único com leitura dos materiais
