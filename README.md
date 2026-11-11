@@ -4,7 +4,7 @@ O Benigno é um agente do **OpenCode** que escreve e revisa trabalhos de Java no
 
 ## Como funciona
 
-Todo o material (apostila, caderno, exemplos, provas, trabalho) foi lido **uma vez** e destilado em **36 subagentes especialistas** (`maligno/*`), cada um com as regras e os trechos de código do professor sobre um único tema.
+Todo o material (apostila, caderno, exemplos, provas, trabalho) foi lido **uma vez** e destilado em **38 subagentes especialistas** (`maligno/*`), cada um com as regras e os trechos de código do professor sobre um único tema.
 
 ```
 benigno (principal) ──► subagentes maligno/* ──► (último caso) 1 arquivo de Materias de aula/
@@ -87,7 +87,7 @@ No terminal, dentro da pasta do repositório:
 ```bash
 opencode api get "/api/agent?location%5Bdirectory%5D=$PWD" | grep -o '"id":"[a-z/-]*igno[a-z/-]*"' | wc -l
 ```
-Deve mostrar **37** (o `benigno` + 36 `maligno/*`). Mostrou 0? Volte aos passos 2 e 3.
+Deve mostrar **39** (o `benigno` + 38 `maligno/*`). Mostrou 0? Volte aos passos 2 e 3.
 
 ### Problemas comuns
 
@@ -179,9 +179,10 @@ O modelo fica sob sua conta, não na imagem. Dentro do OpenCode que abriu no con
 | Construção e estado | `construtores`, `getters-setters`, `operacoes-imutaveis` |
 | Regras transversais | `nomenclatura`, `excecoes`, `estilo`, `encapsulamento`, `javadoc`, `tipos-wrappers` |
 | Entrada e saída | `teclado`, `main-menus` |
-| Estruturas | `vetores`, `busca-ondeesta`, `regex`, `genericos`, `clonador-reflexao`, `pilha`, `arvore`, `conjunto`, `colecoes` |
+| Estruturas | `vetores`, `busca-ondeesta`, `regex`, `genericos`, `clonador-reflexao`, `pilha`, `arvore`, `conjunto`, `colecoes`, `simulado-fila` |
 | Hierarquia | `heranca`, `interface`, `classe-abstrata`, `enum`, `pacotes-jar` |
 | Avançado e trabalhos | `threads-sockets`, `trabalho-velha`, `trabalho-forca` |
+| Testes | `testes` (classe de teste sem framework, com `main` que imprime OK/FALHOU) |
 | Qualidade | `auditor` (corrige como o professor), `erratas` (bugs do material) |
 
 **Por que um validador único para os métodos obrigatórios?** As regras de necessidade dependem umas das outras (`toString`/`equals`/`hashCode` têm o mesmo gatilho; `clone` e construtor de cópia são inseparáveis; `compareTo` precisa concordar com `equals`). Separar em 6 validadores geraria respostas contraditórias. A implementação, ao contrário, é muito diferente de um método para outro, por isso cada um tem seu subagente.

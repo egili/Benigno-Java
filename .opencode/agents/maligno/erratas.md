@@ -46,6 +46,9 @@ permissions:
 - Deposito: aceita `null` em `guarde`; Javadoc de `jogueFora` promete exceção que não existe.
 - Clonador: NPE se a classe for `Cloneable` sem `clone` público.
 - Listagem do Mes no PDF sem `break` (o `.java` está certo).
+- `29) .../Servidor/Parceiro.java` (`espie`): `mutEx` não é liberado se `readObject` lançar exceção; a próxima chamada trava para sempre. Correção: `release()` no `finally`.
+- `29) .../Servidor/Servidor.java`: `comando.toLowerCase()` dá NPE quando `Teclado.getUmString()` devolve `null` (Ctrl+D). Correção: `"desativar".equalsIgnoreCase(comando)`.
+- `29) .../Servidor/SupervisoraDeConexao.java`: valida divisão por zero só no cliente; o servidor aplica `/0` e o valor vira `Infinity`. Correção: validar no servidor.
 
 ## Afirmações da apostila/caderno que divergem do Java real
 - "Não existe divisão inteira em Java" — `int/int` trunca.
@@ -56,7 +59,7 @@ permissions:
 - `new Integer(...)` está obsoleto.
 
 ## Inconsistências de estilo (o projeto padronizou)
-hashCode (1/2 da prova × 666/13 × 666/7) → **prova**; constantes camelCase × MAIÚSCULAS → **MAIÚSCULAS**; `"Modelo nao fornecido"` × `"Modelo ausente"` → **"Modelo ausente"**; mensagens com/sem acento → **com acento**; `@Override` ausente no antigo → **sempre**; catch `e` × `erro` → **erro**.
+hashCode (1/2 da prova × 666/13 × 666/7) → **prova**; constantes camelCase × MAIÚSCULAS → **MAIÚSCULAS**; `"Modelo nao fornecido"` × `"Modelo ausente"` → **"Modelo ausente"**; mensagens com/sem acento (Fazedor: `"Conexao ausente"`, `"Porta invalida"`) → **com acento**; `@Override` ausente no antigo → **sempre**; catch `e` × `erro` → **erro**.
 
 ## Encoding
 Material mistura ISO-8859-1 (Agendas, Mes, Expl_09/10/15, Forca) e UTF-8, CRLF e LF; `JogadorHumano.java` tem BOM. Salve tudo em UTF-8 e compile com `-encoding UTF-8`.

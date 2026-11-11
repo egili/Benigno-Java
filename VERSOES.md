@@ -11,6 +11,7 @@ Evolução das versões do agente Benigno, com as funcionalidades que mudaram em
 | **v3** | 01/11/2026 | Personalidade oposta à do professor Maligno |
 | **v4** | 02/11/2026 | Uso com Docker, sem instalar OpenCode, Git ou JDK |
 | **v5** | 05/11/2026 | Subagentes do simulado da Fila e das classes de teste sem framework |
+| **v6** | 10/11/2026 | Subagente de threads e sockets com o código do Fazedor de Continhas; contagem corrigida para 38 subagentes |
 
 ---
 
@@ -139,3 +140,29 @@ Dois subagentes novos e um ajuste no roteamento, para acompanhar o simulado da 2
 javac *.java
 java FilaTeste
 ```
+
+---
+
+## v6: código do Fazedor de Continhas
+
+**Data:** 10/11/2026
+
+O subagente de threads e sockets deixou de depender só do caderno. Agora ele usa o código do professor do Fazedor de Continhas (pastas `Cliente/` e `Servidor/`), que foi compilado para confirmar nomes, assinaturas e fluxo.
+
+### Funcionalidades
+- **Subagente `threads-sockets` reescrito com o código real:** `Parceiro` (com `proximoComunicado` e `mutEx`), `AceitadoraDeConexao`, `SupervisoraDeConexao`, `TratadoraDeComunicadoDeDesligamento`, cliente e servidor, com a ordem de criação das streams e as mensagens do professor.
+- **Erros do material registrados em `maligno/erratas`:**
+  - `Parceiro.espie` não libera o `mutEx` quando a leitura falha, e a próxima chamada trava;
+  - `comando.toLowerCase()` dá NPE no Ctrl+D;
+  - o servidor aceita divisão por zero, que o cliente barra.
+- **Mensagens com acento:** o código do professor escreve sem acento; o subagente aplica a decisão do projeto.
+- **Skill `cliente-servidor-continhas`:** fontes atualizadas (agora há `.java`) e checklist com os erros acima.
+- **Índice de materiais:** o tema de threads aponta para os `.java` da pasta `29)`.
+- **Agente `benigno`:** cabeçalho em v6 e roteamento de cliente/servidor com a skill.
+- **README:** contagem corrigida para **38 subagentes** (estava em 36, e a v5 já tinha acrescentado dois) e as tabelas agora listam `simulado-fila` e `testes`.
+
+### Fora desta versão
+- Os repositórios de trabalhos de alunos (`CRUD-AOS`, `Cotuca-2-Semestre-2021`, `Cotuca-3-Semestre2022`, `Jogo-da-Forca-em-Java`, `estruturaDeDadosII-final`) estão no repositório como ponteiros de repositório aninhado. Não são material do professor, então não viraram fonte de subagentes.
+
+### Limitações
+- O `Parceiro` e o restante do código de threads do professor têm os bugs listados acima. Os subagentes orientam a versão corrigida, mas não reescrevem o código do material.
