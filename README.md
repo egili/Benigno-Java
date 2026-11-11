@@ -37,31 +37,6 @@ Sem Git? Baixe o ZIP em <https://github.com/egili/Benigno-Java> (botão **Code �
 > *"Benigno, implemente o Tabuleiro do Jogo da Velha."* <br />
 > *"Benigno, revise este código como o professor corrigiria."* <br />
 
-## Subagentes
-
-| Grupo | Subagentes (`maligno/...`) |
-|---|---|
-| Métodos obrigatórios | `metodos-necessidade` (decide quais fazer), `tostring`, `equals`, `hashcode`, `compareto`, `clone-copia` |
-| Construção e estado | `construtores`, `getters-setters`, `operacoes-imutaveis` |
-| Regras transversais | `nomenclatura`, `excecoes`, `estilo`, `encapsulamento`, `javadoc`, `tipos-wrappers` |
-| Entrada e saída | `teclado`, `main-menus` |
-| Estruturas | `vetores`, `busca-ondeesta`, `regex`, `genericos`, `clonador-reflexao`, `pilha`, `arvore`, `conjunto`, `colecoes`, `simulado-fila` |
-| Hierarquia | `heranca`, `interface`, `classe-abstrata`, `enum`, `pacotes-jar` |
-| Avançado e trabalhos | `threads-sockets`, `trabalho-velha`, `trabalho-forca` |
-| Testes | `testes` (classe de teste sem framework, com `main` que imprime OK/FALHOU) |
-| Qualidade | `auditor` (corrige como o professor), `erratas` (bugs do material) |
-
-**Por que um validador único para os métodos obrigatórios?** As regras de necessidade dependem umas das outras (`toString`/`equals`/`hashCode` têm o mesmo gatilho; `clone` e construtor de cópia são inseparáveis; `compareTo` precisa concordar com `equals`). Separar em 6 validadores geraria respostas contraditórias. A implementação, ao contrário, é muito diferente de um método para outro, por isso cada um tem seu subagente.
-
-## Decisões de padronização
-
-O material do professor diverge entre si. O Benigno adota:
-
-- **Prioridade entre fontes:** caderno passado em aula > correções de prova > exemplos recentes (Data, Horario) > apostila > exemplos antigos.
-- **Mensagens de exceção com acento** (`"Nome inválido"`, `"Modelo ausente"`).
-- **`hashCode` da correção da prova:** base 1, multiplicador 2, wrapper por cast, trata negativo.
-- **Constantes em `MAIUSCULAS_COM_UNDERSCORE`** (regra do caderno e da apostila).
-- **Bugs do material nunca são copiados** (catálogo em `maligno/erratas`), incluindo o NullPointerException do empate em `Velha.java`.
 
 ## MDD (Maligno Driven Development)
 
