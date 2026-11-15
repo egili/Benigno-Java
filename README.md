@@ -2,7 +2,7 @@
 
 O Benigno é um agente que escreve e revisa trabalhos de Java no padrão exato que o professor Maligno cobra: não só código que funciona, mas código que o professor *espera* ver para dar a nota máxima.
 
-Funciona no **OpenCode**, no **Claude Code**, no **Cursor** e em **Docker**.
+Funciona no **OpenCode**, no **Claude Code**, no **Antigravity**, no **Cursor** e em **Docker**.
 
 ## Como funciona
 
@@ -16,7 +16,7 @@ benigno (principal) ──► subagentes maligno/* ──► (último caso) 1 ar
 2. Os subagentes não têm ferramentas: respondem com o conhecimento embutido, no formato `REGRA / CÓDIGO / FONTE / ALERTAS`.
 3. Se um tema não estiver coberto, o subagente responde `NAO_COBERTO` apontando **um arquivo**; só então o `benigno` o lê.
 
-No Claude Code a arquitetura é a mesma: o Claude age como Benigno (skill `.claude/skills/benigno-java/`) e delega aos subagentes `.claude/agents/maligno-*` em paralelo, com os plugins **RTK** e **context-mode** habilitados para economizar tokens (desde a v9). No Cursor não há subagentes: o modelo lê os mesmos arquivos em `.cursor/skills/benigno-java/maligno/` quando precisa.
+No Claude Code a arquitetura é a mesma: o Claude age como Benigno (skill `.claude/skills/benigno-java/`) e delega aos subagentes `.claude/agents/maligno-*` em paralelo, com os plugins **RTK** e **context-mode** habilitados para economizar tokens (desde a v9). No Antigravity também (desde a v10): o plugin `.agents/plugins/benigno/` traz a skill `benigno-java` e os subagentes `maligno-*`, com o plugin RTK ao lado. No Cursor não há subagentes: o modelo lê os mesmos arquivos em `.cursor/skills/benigno-java/maligno/` quando precisa.
 
 ## Escolha como usar
 
@@ -24,6 +24,7 @@ No Claude Code a arquitetura é a mesma: o Claude age como Benigno (skill `.clau
 |---|---|---|
 | **OpenCode** (local) | Quem quer o agente completo, com subagentes em paralelo e plugins RTK/context-mode | [docs/OPENCODE.md](docs/OPENCODE.md) |
 | **Claude Code** (desde a v8) | Quem usa o Claude Code; também com subagentes em paralelo e plugins RTK/context-mode | [docs/CLAUDE.md](docs/CLAUDE.md) |
+| **Antigravity** (desde a v10) | Quem usa o Google Antigravity (aplicativo ou CLI `agy`); com subagentes em paralelo e plugin RTK | [docs/ANTIGRAVITY.md](docs/ANTIGRAVITY.md) |
 | **Docker** | Quem não quer instalar OpenCode, Git nem JDK | [docs/DOCKER.md](docs/DOCKER.md) |
 | **Cursor** (desde a v7) | Quem usa o Cursor como editor | [docs/CURSOR.md](docs/CURSOR.md) |
 

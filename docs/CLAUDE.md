@@ -106,5 +106,6 @@ Dentro do `claude`, `/agents` lista os subagentes disponíveis, `/skills` as ski
 ## Outras formas de uso
 
 - [OpenCode](OPENCODE.md): instalação local completa, com subagentes.
+- [Antigravity](ANTIGRAVITY.md): também com subagentes em paralelo e plugin RTK.
 - [Docker](DOCKER.md): sem instalar nada além do Docker.
 - [Cursor](CURSOR.md): usando o Cursor como editor.

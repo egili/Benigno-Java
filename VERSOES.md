@@ -15,6 +15,7 @@ Evolução das versões do agente Benigno, com as funcionalidades que mudaram em
 | **v7** | 11/11/2026 | Versão para o uso do agente pelo cursor |
 | **v8** | 15/11/2026 | Versão para o Claude Code, com os subagentes `maligno-*` em paralelo |
 | **v9** | 15/11/2026 | Plugins RTK e context-mode no Claude Code, para economizar tokens |
+| **v10** | 15/11/2026 | Versão para o Antigravity, com os subagentes `maligno-*` em paralelo e o plugin RTK |
 ---
 
 ## v1: agente único com leitura dos materiais
@@ -205,4 +206,27 @@ O Benigno no Claude Code passou a vir com dois plugins que reduzem o gasto de to
 ### Limitações
 - O plugin `rtk` precisa do binário `rtk` instalado à parte (<https://github.com/rtk-ai/rtk>); o plugin só faz a ligação com o Claude Code.
 - Os plugins valem só para o Claude Code; OpenCode, Cursor e Docker continuam como na v8.
+
+---
+
+## v10: uso com Antigravity
+
+**Data:** 15/11/2026
+
+O Benigno passou a rodar no [Google Antigravity](https://antigravity.google) (aplicativo e CLI `agy`), com a mesma arquitetura de subagentes em paralelo do OpenCode e do Claude Code.
+
+### Funcionalidades
+- **Plugin de workspace `.agents/plugins/benigno/`:** descoberto sozinho pelo Antigravity ao abrir a pasta do repositório.
+  - **Skill `benigno-java`:** a mesma do Claude Code, com o trecho de delegação adaptado aos agentes personalizados do Antigravity.
+  - **38 subagentes `agents/maligno-*.md`:** mesmo corpo de `.claude/agents/`, com frontmatter do Antigravity (`subagent: true`, `mainAgent: false`, só `read_file`).
+  - **Skills auxiliares:** `cliente-servidor-continhas` e `criar-prova-maligno`.
+  - **Regra `rules/AGENTS.md`:** sempre ativa, manda usar a skill `benigno-java` em pedidos de Java da disciplina.
+- **Plugin `.agents/plugins/rtk/`:** gerado com `rtk init --agent antigravity`. O hook `PreToolUse` reescreve os comandos do terminal (`git status` vira `rtk git status`) e não faz nada sem o binário `rtk`.
+- **Guia `docs/ANTIGRAVITY.md`:** instalação, uso, verificação e problemas comuns.
+- **README e tabela de versões:** nova linha de Antigravity.
+
+### Limitações
+- O context-mode não entra: a v2 dele tirou o suporte ao Antigravity/`agy`.
+- O plugin `rtk` precisa do binário `rtk` instalado à parte.
+- As regras continuam partindo de `.opencode/agents/maligno/*.md`; mudanças de conteúdo precisam ser refeitas em `.claude/agents/` e `.agents/plugins/benigno/agents/`.
 
