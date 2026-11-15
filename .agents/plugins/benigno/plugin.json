@@ -1,0 +1,13 @@
+{
+  "name": "benigno",
+  "displayName": "Benigno",
+  "description": "Escreve e revisa Java no padrão do professor Maligno (PUC-Campinas, POO), com 38 subagentes especialistas maligno-* consultados em paralelo.",
+  "version": "1.0.0",
+  "author": { "name": "egili" },
+  "repository": "https://github.com/egili/Benigno-Java",
+  "suggestedPrompts": [
+    "Benigno, crie a classe Investimento com código, descrição, data de abertura, valor e taxa, com aplicar e resgatar.",
+    "Benigno, implemente o Tabuleiro do Jogo da Velha.",
+    "Benigno, revise este código como o professor corrigiria."
+  ]
+}

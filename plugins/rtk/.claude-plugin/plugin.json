@@ -1,0 +1,9 @@
+{
+  "name": "rtk",
+  "version": "1.0.0",
+  "description": "Liga o RTK (rtk-ai/rtk) ao Claude Code: reescreve os comandos Bash para versões com saída enxuta e avisa o modelo de que a saída vem condensada.",
+  "author": {
+    "name": "egili"
+  },
+  "homepage": "https://github.com/rtk-ai/rtk"
+}

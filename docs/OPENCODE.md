@@ -4,7 +4,7 @@ Guia completo para instalar o OpenCode e usar o Benigno localmente. Para as outr
 
 ## Passo a passo para usar o Benigno
 
-Não há prompt para colar nem configuração global: o `opencode.json` da raiz define o `benigno` como agente padrão e carrega o plugin `ponytail`, e os agentes ficam em `.opencode/agents/`. O que você precisa fazer manualmente:
+Não há prompt para colar nem configuração global: o `opencode.json` da raiz define o `benigno` como agente padrão e carrega os plugins `ponytail` e `context-mode`, o plugin do RTK fica em `.opencode/plugins/rtk.ts`, e os agentes ficam em `.opencode/agents/`. O que você precisa fazer manualmente:
 
 ### 1. Ter o OpenCode, um modelo de IA, o Git e o JDK
 Confira o que já está instalado:
@@ -64,7 +64,7 @@ opencode
 ### 4. Selecionar o agente
 - **Sessão nova**: já abre com o `benigno` (é o `default_agent`).
 - **Sessão antiga**: ela guarda o agente com que foi criada. Aperte **Tab** para alternar os agentes primários até aparecer **benigno**, ou abra uma sessão nova.
-- O plugin `ponytail` é instalado sozinho na primeira abertura.
+- Os plugins (`ponytail`, `context-mode` e RTK) vêm com o projeto e carregam sozinhos.
 
 Assim deve ficar o OpenCode aberto na pasta certa, com o **Benigno** selecionado (rodapé do campo de texto e caminho terminando em `Benigno-Java:main`):
 
@@ -90,7 +90,6 @@ Deve mostrar **39** (o `benigno` + 38 `maligno/*`). Mostrou 0? Volte aos passos 
 | Ollama não aparece em `/models` | O Ollama precisa estar rodando (`ollama serve`) em `http://127.0.0.1:11434` e com ao menos um modelo baixado (`ollama list`). |
 | Erro de login/chave inválida | `opencode auth list` mostra as contas; refaça com `/connect` ou `opencode auth logout` + `opencode auth login`. |
 | OpenCode travado ou sem responder | `opencode service restart` e confira com `opencode service status`. |
-| Plugin `ponytail` não instala | Ele é baixado na primeira abertura: precisa de internet. Veja o motivo no log (abaixo). |
 | `javac: command not found` | Instale o JDK (passo 1.3) e reabra o terminal. No Windows, confira o `PATH`/`JAVA_HOME`. |
 | `unmappable character` ou acentos quebrados ao compilar | Compile com `javac -encoding UTF-8 *.java`. |
 

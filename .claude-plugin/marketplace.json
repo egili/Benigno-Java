@@ -1,0 +1,15 @@
+{
+  "name": "benigno",
+  "owner": {
+    "name": "egili"
+  },
+  "description": "Plugins de apoio ao Benigno no Claude Code.",
+  "plugins": [
+    {
+      "name": "rtk",
+      "source": "./plugins/rtk",
+      "description": "Liga o RTK (rtk-ai/rtk) ao Claude Code: reescreve os comandos Bash para versões com saída enxuta e avisa o modelo de que a saída vem condensada.",
+      "version": "1.0.0"
+    }
+  ]
+}

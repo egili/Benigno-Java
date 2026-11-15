@@ -1,0 +1,6 @@
+{
+  "name": "rtk",
+  "version": "1.0.0",
+  "description": "Liga o RTK (rtk-ai/rtk) ao Antigravity: reescreve os comandos do terminal para versões com saída enxuta. Precisa do binário rtk; sem ele, não faz nada.",
+  "homepage": "https://github.com/rtk-ai/rtk"
+}
