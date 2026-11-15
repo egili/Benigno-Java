@@ -9,7 +9,7 @@ Não há prompt para colar. Os arquivos ficam em `.claude/`, dentro do repositó
 - **`.claude/skills/benigno-java/SKILL.md`** — a skill principal. Quando você pede o Benigno (ou código no padrão Maligno), ela entra em contexto e faz o Claude agir como o Benigno: classificar o pedido, rotear e escrever o código.
 - **`.claude/agents/maligno-*.md`** — os 38 subagentes especialistas (um por tema: `maligno-equals`, `maligno-hashcode`, `maligno-heranca`, `maligno-auditor`, ...). São restritos a leitura, respondem só com o conhecimento embutido (`REGRA / CÓDIGO / FONTE / ALERTAS`) e rodam em paralelo.
 - **`.claude/skills/cliente-servidor-continhas/`** e **`.claude/skills/criar-prova-maligno/`** — skills auxiliares (projeto de threads/sockets e criação de enunciados no estilo Maligno).
-- **`.claude/settings.json`** — habilita os plugins **RTK** e **context-mode** (desde a v9), que economizam tokens. Veja o [passo 6](#6-instalar-os-plugins-rtk-e-context-mode-opcional).
+- **`.claude/settings.json`** — habilita os plugins **RTK** e **context-mode**, que economizam tokens. Veja o [passo 6](#6-instalar-os-plugins-rtk-e-context-mode-opcional).
 
 ```
 Claude (como Benigno) ──► subagentes maligno-* (em paralelo) ──► (último caso) 1 arquivo de Materias de aula/

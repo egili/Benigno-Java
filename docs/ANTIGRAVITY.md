@@ -1,6 +1,6 @@
 # Usar o Benigno com Antigravity
 
-A partir da **v10** o Benigno também roda no [Google Antigravity](https://antigravity.google), no aplicativo e na CLI `agy`. Como no OpenCode e no Claude Code, o agente principal age como Benigno e delega aos 38 subagentes especialistas `maligno-*`. Para as outras formas de uso, veja o [README](../README.md).
+A partir da **v8** o Benigno também roda no [Google Antigravity](https://antigravity.google), no aplicativo e na CLI `agy`. Como no OpenCode e no Claude Code, o agente principal age como Benigno e delega aos 38 subagentes especialistas `maligno-*`. Para as outras formas de uso, veja o [README](../README.md).
 
 ## Como funciona
 
