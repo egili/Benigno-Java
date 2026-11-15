@@ -202,6 +202,7 @@ O Benigno passou a rodar no [Claude Code](https://claude.com/claude-code) e no [
 #### Docker
 - **Imagem em Node 24:** versão exigida pelo context-mode.
 - **Binário `rtk` na imagem:** baixado da versão fixada no `Dockerfile` (`RTK_VERSION`), então o RTK funciona sem instalar nada.
+- **Só os arquivos do OpenCode na imagem:** o `.dockerignore` deixa de fora `.claude/`, `.claude-plugin/`, `.agents/`, `.cursor/`, `plugins/` e `.github/`. O container só roda o OpenCode, que também lê skills de `.claude/skills/`; sem essa exclusão, a skill do Claude Code e uma cópia de `cliente-servidor-continhas` apareciam no Benigno do container.
 
 #### Cursor
 - Sem plugins: os hooks do RTK no Cursor só existem na configuração global, o context-mode tirou o suporte ao Cursor e o `ponytail` é só do OpenCode.
