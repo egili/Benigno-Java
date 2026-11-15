@@ -1,3 +1,9 @@
 docs
 Dockerfile
 .dockerignore
+.github
+.claude
+.claude-plugin
+.agents
+.cursor
+plugins
