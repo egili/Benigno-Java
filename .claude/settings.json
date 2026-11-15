@@ -1,0 +1,20 @@
+{
+  "extraKnownMarketplaces": {
+    "context-mode": {
+      "source": {
+        "source": "github",
+        "repo": "mksglu/context-mode"
+      }
+    },
+    "benigno": {
+      "source": {
+        "source": "github",
+        "repo": "egili/Benigno-Java"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "context-mode@context-mode": true,
+    "rtk@benigno": true
+  }
+}

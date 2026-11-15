@@ -14,6 +14,7 @@ Evolução das versões do agente Benigno, com as funcionalidades que mudaram em
 | **v6** | 10/11/2026 | Subagente de threads e sockets com o código do Fazedor de Continhas; contagem corrigida para 38 subagentes |
 | **v7** | 11/11/2026 | Versão para o uso do agente pelo cursor |
 | **v8** | 15/11/2026 | Versão para o Claude Code, com os subagentes `maligno-*` em paralelo |
+| **v9** | 15/11/2026 | Plugins RTK e context-mode no Claude Code, para economizar tokens |
 ---
 
 ## v1: agente único com leitura dos materiais
@@ -186,3 +187,22 @@ O Benigno passou a rodar no [Claude Code](https://claude.com/claude-code), recup
 ### Limitações
 - Subagentes não disparam outros subagentes: quando um responde `NAO_COBERTO` apontando outro tema, é o Claude principal que chama o próximo.
 - As regras são as mesmas do OpenCode; mudanças de conteúdo continuam partindo de `.opencode/agents/maligno/*.md`.
+
+---
+
+## v9: plugins RTK e context-mode no Claude Code
+
+**Data:** 15/11/2026
+
+O Benigno no Claude Code passou a vir com dois plugins que reduzem o gasto de tokens: o **RTK**, que condensa a saída dos comandos do terminal, e o **context-mode**, que mantém saídas grandes (logs, arquivos longos, páginas) fora da conversa.
+
+### Funcionalidades
+- **`.claude/settings.json` do projeto:** registra os marketplaces `context-mode` (`mksglu/context-mode`) e `benigno` (este repositório) e habilita `context-mode@context-mode` e `rtk@benigno`. Ao abrir o `claude` na pasta e confiar nela, o Claude Code oferece instalar os dois.
+- **Marketplace próprio `.claude-plugin/marketplace.json`:** o RTK não tem plugin oficial para o Claude Code (só o `rtk init`, que mexe na configuração global), então o repositório traz o plugin `plugins/rtk/`.
+- **Plugin `rtk`:** hook `PreToolUse` no Bash que repassa o comando ao `rtk hook claude` (por exemplo, `git status` vira `rtk git status`) e hook `SessionStart` que avisa o modelo de que a saída vem condensada e de quando usar `rtk bypass`. Sem o binário `rtk` no PATH, não faz nada e só avisa na abertura da sessão.
+- **Guia `docs/CLAUDE.md`:** passo de instalação dos plugins, como desativar e problemas comuns.
+
+### Limitações
+- O plugin `rtk` precisa do binário `rtk` instalado à parte (<https://github.com/rtk-ai/rtk>); o plugin só faz a ligação com o Claude Code.
+- Os plugins valem só para o Claude Code; OpenCode, Cursor e Docker continuam como na v8.
+
