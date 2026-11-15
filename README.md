@@ -22,7 +22,7 @@ No Claude Code a arquitetura é a mesma: o Claude age como Benigno (skill `.clau
 
 | Caminho | Para quem | Guia |
 |---|---|---|
-| **OpenCode** (local) | Quem quer o agente completo, com subagentes em paralelo | [docs/OPENCODE.md](docs/OPENCODE.md) |
+| **OpenCode** (local) | Quem quer o agente completo, com subagentes em paralelo e plugins RTK/context-mode | [docs/OPENCODE.md](docs/OPENCODE.md) |
 | **Claude Code** (desde a v8) | Quem usa o Claude Code; também com subagentes em paralelo e plugins RTK/context-mode | [docs/CLAUDE.md](docs/CLAUDE.md) |
 | **Docker** | Quem não quer instalar OpenCode, Git nem JDK | [docs/DOCKER.md](docs/DOCKER.md) |
 | **Cursor** (desde a v7) | Quem usa o Cursor como editor | [docs/CURSOR.md](docs/CURSOR.md) |

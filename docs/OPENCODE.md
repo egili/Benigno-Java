@@ -4,7 +4,7 @@ Guia completo para instalar o OpenCode e usar o Benigno localmente. Para as outr
 
 ## Passo a passo para usar o Benigno
 
-Não há prompt para colar nem configuração global: o `opencode.json` da raiz define o `benigno` como agente padrão e carrega o plugin `ponytail`, e os agentes ficam em `.opencode/agents/`. O que você precisa fazer manualmente:
+Não há prompt para colar nem configuração global: o `opencode.json` da raiz define o `benigno` como agente padrão e carrega os plugins `ponytail` e `context-mode`, e os agentes ficam em `.opencode/agents/`. O que você precisa fazer manualmente:
 
 ### 1. Ter o OpenCode, um modelo de IA, o Git e o JDK
 Confira o que já está instalado:
@@ -64,13 +64,24 @@ opencode
 ### 4. Selecionar o agente
 - **Sessão nova**: já abre com o `benigno` (é o `default_agent`).
 - **Sessão antiga**: ela guarda o agente com que foi criada. Aperte **Tab** para alternar os agentes primários até aparecer **benigno**, ou abra uma sessão nova.
-- O plugin `ponytail` é instalado sozinho na primeira abertura.
+- Os plugins `ponytail` e `context-mode` são instalados sozinhos na primeira abertura.
 
 Assim deve ficar o OpenCode aberto na pasta certa, com o **Benigno** selecionado (rodapé do campo de texto e caminho terminando em `Benigno-Java:main`):
 
 ![OpenCode aberto com o agente Benigno](opencode-benigno.png)
 
-### 5. Conferir (opcional)
+### 5. Ativar o RTK e o context-mode (economia de tokens)
+Os dois plugins gastam menos tokens: o **context-mode** tira do chat as saídas grandes das ferramentas e as deixa indexadas para busca; o **RTK** condensa a saída dos comandos do terminal (`git status`, testes, compilação) mantendo os sinais importantes.
+
+- **context-mode:** já está no `opencode.json` da raiz, então não precisa fazer nada. Confira com `context-mode doctor --agents opencode`.
+- **RTK:** o plugin do OpenCode só existe em modo global, então instale uma vez na sua conta (não no projeto):
+  ```bash
+  rtk init -g --opencode
+  ```
+  Isso cria `~/.config/opencode/plugins/rtk.ts`. O mesmo comando também registra o RTK no Claude Code, se você usar; se já estiver lá, não altera nada. Sem o binário `rtk` instalado, o plugin não faz nada e os comandos rodam normalmente (instalação: <https://github.com/rtk-ai/rtk>).
+- Reinicie o OpenCode depois de instalar. Se um resultado do RTK vier vazio ou contradizer o código de saída, rode o comando de novo com `rtk bypass <cmd>`.
+
+### 6. Conferir (opcional)
 No terminal, dentro da pasta do repositório:
 ```bash
 opencode api get "/api/agent?location%5Bdirectory%5D=$PWD" | grep -o '"id":"[a-z/-]*igno[a-z/-]*"' | wc -l
@@ -91,6 +102,8 @@ Deve mostrar **39** (o `benigno` + 38 `maligno/*`). Mostrou 0? Volte aos passos 
 | Erro de login/chave inválida | `opencode auth list` mostra as contas; refaça com `/connect` ou `opencode auth logout` + `opencode auth login`. |
 | OpenCode travado ou sem responder | `opencode service restart` e confira com `opencode service status`. |
 | Plugin `ponytail` não instala | Ele é baixado na primeira abertura: precisa de internet. Veja o motivo no log (abaixo). |
+| RTK não condensa a saída | Confira `rtk --version` e se `~/.config/opencode/plugins/rtk.ts` existe (senão rode `rtk init -g --opencode`). Reinicie o OpenCode. |
+| Ferramentas `ctx_*` do context-mode não aparecem | Abra o OpenCode dentro da pasta do repositório, digite `/reload` e rode `context-mode doctor --agents opencode` para ver o motivo. |
 | `javac: command not found` | Instale o JDK (passo 1.3) e reabra o terminal. No Windows, confira o `PATH`/`JAVA_HOME`. |
 | `unmappable character` ou acentos quebrados ao compilar | Compile com `javac -encoding UTF-8 *.java`. |
 
