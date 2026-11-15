@@ -4,5 +4,8 @@
   "plugins": [
     "@dietrichgebert/ponytail",
     "context-mode"
+  ],
+  "permissions": [
+    { "action": "skill", "resource": "benigno-java", "effect": "deny" }
   ]
 }

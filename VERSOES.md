@@ -198,6 +198,7 @@ O Benigno passou a rodar no [Claude Code](https://claude.com/claude-code) e no [
 #### OpenCode
 - **context-mode no `opencode.json`:** carregado junto com o `ponytail`.
 - **Plugin do RTK em `.opencode/plugins/rtk.ts`:** o plugin que o `rtk init --opencode` gera, agora dentro do projeto. Sem o binário `rtk` no PATH, não faz nada.
+- **Skill `benigno-java` do Claude Code bloqueada no `opencode.json`:** o OpenCode também lê `.claude/skills/`, e essa skill manda delegar aos subagentes com os nomes do Claude Code (`maligno-equals`), que não existem no OpenCode (`maligno/equals`). Uma regra `permissions` com `deny` esconde a skill do modelo. As outras skills de `.claude/skills/` continuam: `cliente-servidor-continhas` já é sobrescrita pela cópia de `.opencode/skills/`, e `criar-prova-maligno` funciona igual.
 
 #### Docker
 - **Imagem em Node 24:** versão exigida pelo context-mode.
