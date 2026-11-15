@@ -13,6 +13,7 @@ Evolução das versões do agente Benigno, com as funcionalidades que mudaram em
 | **v5** | 05/11/2026 | Subagentes do simulado da Fila e das classes de teste sem framework |
 | **v6** | 10/11/2026 | Subagente de threads e sockets com o código do Fazedor de Continhas; contagem corrigida para 38 subagentes |
 | **v7** | 11/11/2026 | Versão para o uso do agente pelo cursor |
+| **v8** | 15/11/2026 | Versão para o Claude Code, com os subagentes `maligno-*` em paralelo |
 ---
 
 ## v1: agente único com leitura dos materiais
@@ -166,3 +167,22 @@ O subagente de threads e sockets deixou de depender só do caderno. Agora ele us
 
 ### Limitações
 - O `Parceiro` e o restante do código de threads do professor têm os bugs listados acima. Os subagentes orientam a versão corrigida, mas não reescrevem o código do material.
+
+---
+
+## v8: uso com Claude Code
+
+**Data:** 15/11/2026
+
+O Benigno passou a rodar no [Claude Code](https://claude.com/claude-code), recuperando a arquitetura de subagentes em paralelo do OpenCode (que o Cursor, na v7, não tinha).
+
+### Funcionalidades
+- **Skill principal `.claude/skills/benigno-java/`:** aciona o Claude como Benigno, com o fluxo obrigatório, o roteamento, as decisões fixas e a personalidade. Delega aos subagentes com a ferramenta de agentes (Task), em paralelo.
+- **38 subagentes `.claude/agents/maligno-*.md`:** gerados a partir de `.opencode/agents/maligno/*.md` (mesmo conteúdo de regras), com frontmatter do Claude Code — restritos a leitura, modelo `haiku` (e `sonnet` no `maligno-auditor`).
+- **Skills auxiliares portadas:** `cliente-servidor-continhas` e `criar-prova-maligno`.
+- **Guia `docs/CLAUDE.md`:** instalação, uso, verificação e problemas comuns.
+- **README e tabela de versões:** nova linha de Claude Code.
+
+### Limitações
+- Subagentes não disparam outros subagentes: quando um responde `NAO_COBERTO` apontando outro tema, é o Claude principal que chama o próximo.
+- As regras são as mesmas do OpenCode; mudanças de conteúdo continuam partindo de `.opencode/agents/maligno/*.md`.
