@@ -47,12 +47,7 @@ Quando ele perguntar se confia no workspace, aceite: sem isso os plugins de `.ag
 
 ⚠️ Erro mais comum. O Antigravity procura `.agents/` subindo da pasta aberta até a raiz do repositório. Aberto na pasta que *contém* o repositório, ele não encontra o Benigno.
 
-### 5. Instalar o RTK (opcional)
-O plugin `rtk` só faz a ligação com o Antigravity: o **binário** `rtk` precisa estar instalado à parte (veja <https://github.com/rtk-ai/rtk>). Confira com `rtk --version`. Sem ele, o plugin não faz nada e os comandos rodam como foram pedidos.
-
-Se você usa listas de comandos permitidos, libere os comandos do RTK (por exemplo `command(rtk *)`): o Antigravity confere a permissão depois que o hook reescreve o comando.
-
-### 6. Pedir no chat
+### 5. Pedir no chat
 Basta pedir normalmente; a skill `benigno-java` é acionada sozinha quando o pedido é de Java no padrão da disciplina:
 > *"Benigno, crie a classe Investimento com código, descrição, data de abertura, valor e taxa, com aplicar e resgatar."*
 >
@@ -62,7 +57,7 @@ Basta pedir normalmente; a skill `benigno-java` é acionada sozinha quando o ped
 
 Para forçar, digite `/benigno-java` ou peça *"use a skill benigno-java"*.
 
-### 7. Conferir (opcional)
+### 6. Conferir (opcional)
 ```bash
 ls .agents/plugins/benigno/agents | wc -l          # deve mostrar 38
 agy plugin validate .agents/plugins/benigno         # skills 3 · agents 38 · rules 1
@@ -79,15 +74,13 @@ Para desligar um dos plugins, use a tela de plugins do aplicativo ou `agy plugin
 | O Benigno não é acionado | Abra o Antigravity **dentro** da pasta do repositório e confie no workspace (passo 4). Chame com `/benigno-java` ou peça "use a skill benigno-java". |
 | O agente não conhece os `maligno-*` | Mesmo caso acima. Confira `ls .agents/plugins/benigno/agents`; se estiver vazio, `git checkout main && git pull`. |
 | O agente não delega aos subagentes | Peça explicitamente: *"consulte os subagentes maligno-* necessários em paralelo antes de escrever"*. |
-| Comandos não ficam mais curtos | O binário `rtk` não está no PATH (passo 5), ou o plugin `rtk` está desligado. |
 | Acentos quebrados ao compilar | Compile com `javac -encoding UTF-8 *.java`. |
 | `javac: command not found` | Instale o JDK (passo 2) e reabra o terminal. |
 
 ## Limitações
 
-- O **context-mode** não tem versão para o Antigravity: a v2 do context-mode tirou o suporte ao Antigravity/`agy`. Ele continua só no Claude Code ([docs/CLAUDE.md](CLAUDE.md)).
+- O **context-mode** não tem versão para o Antigravity: a v2 do context-mode tirou o suporte ao Antigravity/`agy`. Ele vem no Claude Code, no OpenCode e no Docker.
 - Os subagentes rodam no modelo da sua sessão. Em trabalho valendo nota, use um modelo forte e rode o `maligno-auditor` no final.
-- A regra do plugin `rtk` diz ao modelo que a saída vem condensada mesmo quando o binário não está instalado; é inofensivo, mas desligue o plugin se não for usar o RTK.
 
 ## Outras formas de uso
 

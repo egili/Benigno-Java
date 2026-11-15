@@ -1,9 +1,7 @@
 #!/bin/sh
 # Injeta no início da sessão a instrução de uso do RTK (o que o `rtk init` poria no CLAUDE.md).
-if ! command -v rtk >/dev/null 2>&1; then
-  echo "Plugin rtk ativo, mas o binário rtk não está no PATH: a saída dos comandos não será condensada. Instalação: https://github.com/rtk-ai/rtk"
-  exit 0
-fi
+# Sem o binário rtk no PATH, não injeta nada.
+command -v rtk >/dev/null 2>&1 || exit 0
 cat <<'TXT'
 # Command output
 

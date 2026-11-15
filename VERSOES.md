@@ -183,7 +183,7 @@ O Benigno passou a rodar no [Claude Code](https://claude.com/claude-code) e no [
 - **38 subagentes `.claude/agents/maligno-*.md`:** gerados a partir de `.opencode/agents/maligno/*.md` (mesmo conteúdo de regras), com frontmatter do Claude Code — restritos a leitura, modelo `haiku` (e `sonnet` no `maligno-auditor`).
 - **Skills auxiliares portadas:** `cliente-servidor-continhas` e `criar-prova-maligno`.
 - **Plugins no `.claude/settings.json` do projeto:** registra os marketplaces `context-mode` (`mksglu/context-mode`) e `benigno` (este repositório) e habilita `context-mode@context-mode` e `rtk@benigno`. Ao abrir o `claude` na pasta e confiar nela, o Claude Code oferece instalar os dois.
-- **Plugin próprio `plugins/rtk/` (marketplace `.claude-plugin/marketplace.json`):** o RTK não tem plugin oficial para o Claude Code. O plugin tem um hook `PreToolUse` no Bash que repassa o comando ao `rtk hook claude` (`git status` vira `rtk git status`) e um hook `SessionStart` que avisa o modelo de que a saída vem condensada e de quando usar `rtk bypass`. Sem o binário `rtk` no PATH, não faz nada e só avisa na abertura da sessão.
+- **Plugin próprio `plugins/rtk/` (marketplace `.claude-plugin/marketplace.json`):** o RTK não tem plugin oficial para o Claude Code. O plugin tem um hook `PreToolUse` no Bash que repassa o comando ao `rtk hook claude` (`git status` vira `rtk git status`) e um hook `SessionStart` que avisa o modelo de que a saída vem condensada e de quando usar `rtk bypass`. Sem o binário `rtk` no PATH, não faz nada.
 - **Guia `docs/CLAUDE.md`:** instalação, plugins, uso, verificação e problemas comuns.
 
 #### Antigravity
@@ -197,13 +197,21 @@ O Benigno passou a rodar no [Claude Code](https://claude.com/claude-code) e no [
 
 #### OpenCode
 - **context-mode no `opencode.json`:** carregado junto com o `ponytail`.
-- **RTK:** o plugin do OpenCode só existe em modo global (`rtk init -g --opencode`); o passo está em `docs/OPENCODE.md`.
+- **Plugin do RTK em `.opencode/plugins/rtk.ts`:** o plugin que o `rtk init --opencode` gera, agora dentro do projeto. Sem o binário `rtk` no PATH, não faz nada.
+
+#### Docker
+- **Imagem em Node 24:** versão exigida pelo context-mode.
+- **Binário `rtk` na imagem:** baixado da versão fixada no `Dockerfile` (`RTK_VERSION`), então o RTK funciona sem instalar nada.
+
+#### Cursor
+- Sem plugins: os hooks do RTK no Cursor só existem na configuração global, o context-mode tirou o suporte ao Cursor e o `ponytail` é só do OpenCode.
 
 #### Documentação
 - **README e tabela de versões:** novas linhas de Claude Code e Antigravity e menção aos plugins.
+- **Tutoriais sem passo de instalação de plugins:** `ponytail`, `context-mode` e RTK vêm com o projeto em cada plataforma onde há suporte.
 
 ### Limitações
 - Subagentes não disparam outros subagentes: quando um responde `NAO_COBERTO` apontando outro tema, é o agente principal que chama o próximo.
-- O plugin `rtk` precisa do binário `rtk` instalado à parte (<https://github.com/rtk-ai/rtk>); o plugin só faz a ligação com o agente.
+- Fora do Docker, o plugin do RTK só faz a ligação com o agente: ele age apenas se o binário `rtk` já estiver instalado no computador.
 - O context-mode não entra no Antigravity: a v2 dele tirou o suporte ao Antigravity/`agy`.
 - As regras são as mesmas do OpenCode; mudanças de conteúdo continuam partindo de `.opencode/agents/maligno/*.md` e precisam ser refeitas em `.claude/agents/` e `.agents/plugins/benigno/agents/`.

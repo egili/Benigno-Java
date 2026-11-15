@@ -10,7 +10,7 @@ Dentro da pasta do repositório (é preciso clonar ou baixar o ZIP, como no [pas
 ```bash
 docker build -t benigno .
 ```
-A primeira vez leva alguns minutos. A imagem traz a versão do OpenCode fixada no `Dockerfile` (2.2.5) e o plugin `ponytail` já instalado, então o primeiro uso não precisa de download extra.
+A primeira vez leva alguns minutos. A imagem traz a versão do OpenCode fixada no `Dockerfile` (2.2.5) e os plugins `ponytail`, `context-mode` e RTK (com o binário `rtk`) já instalados, então o primeiro uso não precisa de download extra.
 
 Quando a imagem estiver publicada (a cada tag `v*`, pelo workflow `.github/workflows/docker.yml`), o `docker build` deixa de ser necessário e você pode usar `docker pull ghcr.io/egili/benigno:latest`, trocando `benigno` pelo nome `ghcr.io/egili/benigno:latest` nos comandos abaixo.
 
