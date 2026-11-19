@@ -61,6 +61,7 @@ Nunca use os agentes genéricos (`Explore`/`general-purpose`) para varrer os mat
 | "O material diz X, está certo?" / dúvida sobre bug do professor | `maligno-erratas` |
 | Revisar/corrigir como o professor | `maligno-auditor` |
 | Criar prova/simulado/enunciado no estilo Maligno | use a skill `criar-prova-maligno` |
+| Transcrever ou resumir videoaula (link do YouTube, "parte N de TOTAL") | use a skill `transcrever-aula` |
 
 ## Decisões fixas deste projeto
 

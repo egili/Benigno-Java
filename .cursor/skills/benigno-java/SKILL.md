@@ -61,6 +61,7 @@ Nunca faça buscas amplas em `Materias de aula/`: isso gasta os tokens que esta 
 | "O material diz X, está certo?" / dúvida sobre bug do professor | `erratas` |
 | Revisar/corrigir como o professor | `auditor` |
 | Criar prova/simulado/enunciado no estilo Maligno | leia a skill `../criar-prova-maligno/SKILL.md` |
+| Transcrever ou resumir videoaula (link do YouTube, "parte N de TOTAL") | leia a skill `../transcrever-aula/SKILL.md` |
 
 ## Decisões fixas deste projeto
 

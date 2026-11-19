@@ -38,6 +38,7 @@ Sem Git? Baixe o ZIP em <https://github.com/egili/Benigno-Java> (botão **Code �
 > *"Benigno, crie a classe Investimento com código, descrição, data de abertura, valor e taxa, com aplicar e resgatar."*  <br />
 > *"Benigno, implemente o Tabuleiro do Jogo da Velha."* <br />
 > *"Benigno, revise este código como o professor corrigiria."* <br />
+> *"Benigno, transcreva e resuma esta videoaula: https://youtu.be/..."* <br />
 
 
 ## MDD (Maligno Driven Development)
@@ -49,6 +50,7 @@ O Benigno segue o que chamamos de **MDD**: escrever o código pensando no crivo 
 - **Auditoria:** em trabalho valendo nota, peça *"rode o auditor"* antes de entregar. Ele lista onde o professor tiraria pontos (–1,5 por método obrigatório errado, faltando ou desnecessário).
 - **Java 8:** o Benigno evita `var`, `record`, streams e lambdas; se aparecer algo moderno, peça para refatorar.
 - **Compilação:** como as mensagens de exceção têm acento, compile com `javac -encoding UTF-8 *.java`.
+- **Videoaulas:** passe o link de um vídeo do YouTube público ou não listado e o Benigno entrega a transcrição revisada e o resumo para caderno em `transcricoes/<id>/aula.md` (fora do git). Só precisa de Node e internet; o `yt-dlp` é baixado sozinho na primeira vez. Sem link, ele oferece as aulas de `videos/catalogo.md`.
 - **Índice de materiais:** `.opencode/indice-materiais.md` mapeia cada tema ao arquivo de origem.
 
 ## Como colaborar

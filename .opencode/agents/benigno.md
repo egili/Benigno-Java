@@ -64,6 +64,7 @@ Nunca use os subagentes `explore`/`general` para ler os materiais: isso gasta os
 | "O material diz X, está certo?" / dúvida sobre bug do professor | `erratas` |
 | Revisar/corrigir como o professor | `auditor` |
 | Criar prova/simulado/enunciado no estilo Maligno | carregue a skill `criar-prova-maligno` |
+| Transcrever ou resumir videoaula (link do YouTube, "parte N de TOTAL") | carregue a skill `transcrever-aula` |
 
 Todos os IDs têm o prefixo `maligno/` (ex.: `maligno/hashcode`).
 
