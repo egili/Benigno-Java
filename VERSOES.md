@@ -14,8 +14,7 @@ Evolução das versões do agente Benigno, com as funcionalidades que mudaram em
 | **v6** | 10/11/2026 | Subagente de threads e sockets com o código do Fazedor de Continhas; contagem corrigida para 38 subagentes |
 | **v7** | 11/11/2026 | Versão para o uso do agente pelo cursor |
 | **v8** | 15/11/2026 | Versões para o Claude Code e o Antigravity, com os subagentes `maligno-*` em paralelo, e plugins RTK e context-mode para economizar tokens |
-| **v9** | 19/11/2026 | Subagente de banco de dados (JDBC, DBO/DAO) com o código da pasta `17)` e as videoaulas de BD; 39 subagentes |
-| **v10** | 19/11/2026 | Transcrição e resumo para caderno de videoaulas do YouTube a partir do link |
+| **v9** | 19/11/2026 | Subagente de banco de dados (JDBC, DBO/DAO) com o código da pasta `17)` e as videoaulas de BD; 39 subagentes; transcrição e resumo para caderno de videoaulas do YouTube a partir do link |
 ---
 
 ## v1: agente único com leitura dos materiais
@@ -222,7 +221,7 @@ O Benigno passou a rodar no [Claude Code](https://claude.com/claude-code) e no [
 
 ---
 
-## v9: subagente de banco de dados
+## v9: subagente de banco de dados e transcrição de videoaulas
 
 **Data:** 19/11/2026
 
@@ -249,20 +248,11 @@ O professor passou duas videoaulas assíncronas sobre acesso a banco de dados em
   - **OpenCode:** o `benigno` ganhou a linha de roteamento de `criar-prova-maligno`, o tratamento de `NAO_COBERTO` que aponta outro subagente e a seção de compilação, que só existiam no Claude Code e no Antigravity. A skill `criar-prova-maligno` agora também fica em `.opencode/skills/`, porque o Docker não leva a `.claude/` e o Benigno do container ficava sem ela.
   - Os 39 temas têm o mesmo corpo nas quatro plataformas.
 
-### Limitações
-- O material e o código do professor estão em ISO-8859-1. Para compilar com `-encoding UTF-8` (decisão do projeto), as classes `core` precisam ser convertidas antes.
-- O teste foi feito com H2, não com um SQL Server real.
-- As transcrições automáticas têm trechos ininteligíveis. O subagente só traz o que foi confirmado pelo código ou dito com clareza.
-
----
-
-## v10: transcrição de videoaulas
-
-**Data:** 19/11/2026
+### Transcrição de videoaulas
 
 O professor passou a publicar videoaulas não listadas no YouTube. Agora basta passar o link para o Benigno entregar a transcrição revisada e o resumo para caderno.
 
-### Funcionalidades
+#### Funcionalidades
 - **Script `scripts/transcrever-video.mjs <link> [pasta]`:** baixa a legenda em português do vídeo (a do professor, se houver; senão a automática) e grava `transcricoes/<id>/bruta.txt` com blocos `[hh:mm:ss]`. Usa o `yt-dlp`, que o próprio script baixa para `~/.cache/benigno/` na primeira vez e atualiza se o YouTube mudar. Funciona com vídeo público ou não listado, sem login nem navegador. Só precisa de Node, que todas as plataformas já usam.
 - **Skill `transcrever-aula`** nas quatro plataformas e no Docker:
   - roda o script e para, sem simular, se o vídeo não abrir ou não tiver legenda;
@@ -274,11 +264,16 @@ O professor passou a publicar videoaulas não listadas no YouTube. Agora basta p
 - **Documentação:** guia `docs/VIDEOAULAS.md` (uso, catálogo, limitações e problemas comuns), seção no README e nota no guia do Docker.
 - **`transcricoes/` fora do git e da imagem Docker:** o repositório é público e as aulas são só para os alunos.
 
-### Por que legenda e não Whisper
+#### Por que legenda e não Whisper
 - A legenda já existe no YouTube e sai em segundos; o Whisper local exige Python, `ffmpeg`, um modelo de centenas de MB e de 30 a 60 minutos por aula sem GPU.
 - Os erros da legenda automática ("bebê" no lugar de "BD") são corrigidos na revisão, cruzando com o código do material, como foi feito na v9.
 
-### Limitações
+#### Limitações
 - Vídeo sem legenda em português (nem automática) não é transcrito.
 - Vídeo privado de verdade não funciona: exigiria o login de quem tem acesso.
 - Baixar conteúdo do YouTube vai contra os termos de uso dele; use só para estudo e não redistribua as transcrições.
+
+### Limitações do subagente de banco de dados
+- O material e o código do professor estão em ISO-8859-1. Para compilar com `-encoding UTF-8` (decisão do projeto), as classes `core` precisam ser convertidas antes.
+- O teste foi feito com H2, não com um SQL Server real.
+- As transcrições automáticas têm trechos ininteligíveis. O subagente só traz o que foi confirmado pelo código ou dito com clareza.

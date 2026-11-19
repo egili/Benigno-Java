@@ -41,7 +41,7 @@ Sem Git? Baixe o ZIP em <https://github.com/egili/Benigno-Java> (botão **Code �
 > *"Benigno, transcreva e resuma esta videoaula: https://youtu.be/..."* <br />
 
 
-## Videoaulas (desde a v10)
+## Videoaulas (desde a v9)
 
 Passe o link de uma videoaula do YouTube, pública ou não listada, e o Benigno entrega a **transcrição revisada** e o **resumo para caderno**, na ordem da aula. Só precisa de Node e internet. Sem link, ele mostra as aulas que já conhece (`videos/catalogo.md`) e pergunta o tema. Detalhes, limitações e problemas comuns em [docs/VIDEOAULAS.md](docs/VIDEOAULAS.md).
 

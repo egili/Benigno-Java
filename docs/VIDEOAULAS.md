@@ -1,6 +1,6 @@
 # Videoaulas: transcrição e resumo para caderno
 
-A partir da **v10** o Benigno transcreve videoaulas do YouTube. Basta passar o link de um vídeo **público ou não listado**. Ele entrega:
+A partir da **v9** o Benigno transcreve videoaulas do YouTube. Basta passar o link de um vídeo **público ou não listado**. Ele entrega:
 
 1. a **transcrição revisada**, quase palavra por palavra, com marcações de tempo;
 2. o **resumo para caderno**, em seções numeradas, na ordem em que o professor falou.
