@@ -243,6 +243,10 @@ O professor passou duas videoaulas assíncronas sobre acesso a banco de dados em
 - **Auditor:** checklist de banco de dados.
 - **Roteamento e índice de materiais:** novo tema em todas as plataformas.
 - **Contagem:** 39 subagentes no README, nos guias e no `plugin.json` do Antigravity.
+- **Mesma funcionalidade em todas as plataformas:**
+  - **Cursor:** ganhou os temas `simulado-fila` e `testes`, que faltavam. `erratas`, `threads-sockets` (com o código do Fazedor de Continhas) e o índice de materiais estavam na versão anterior à v6 e foram atualizados. A skill `cliente-servidor-continhas` foi adicionada. A `SKILL.md` foi refeita a partir da do Claude Code, com o mesmo roteamento, decisões e personalidade. `benigno-agente.md` voltou a ser espelho do `benigno` do OpenCode.
+  - **OpenCode:** o `benigno` ganhou a linha de roteamento de `criar-prova-maligno`, o tratamento de `NAO_COBERTO` que aponta outro subagente e a seção de compilação, que só existiam no Claude Code e no Antigravity. A skill `criar-prova-maligno` agora também fica em `.opencode/skills/`, porque o Docker não leva a `.claude/` e o Benigno do container ficava sem ela.
+  - Os 39 temas têm o mesmo corpo nas quatro plataformas.
 
 ### Limitações
 - O material e o código do professor estão em ISO-8859-1. Para compilar com `-encoding UTF-8` (decisão do projeto), as classes `core` precisam ser convertidas antes.

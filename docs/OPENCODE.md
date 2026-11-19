@@ -75,7 +75,7 @@ No terminal, dentro da pasta do repositório:
 ```bash
 opencode api get "/api/agent?location%5Bdirectory%5D=$PWD" | grep -o '"id":"[a-z/-]*igno[a-z/-]*"' | wc -l
 ```
-Deve mostrar **39** (o `benigno` + 38 `maligno/*`). Mostrou 0? Volte aos passos 2 e 3.
+Deve mostrar **40** (o `benigno` + 39 `maligno/*`). Mostrou 0? Volte aos passos 2 e 3.
 
 ## Problemas comuns
 
