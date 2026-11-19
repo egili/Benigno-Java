@@ -260,6 +260,7 @@ O professor passou a publicar videoaulas não listadas no YouTube. Agora basta p
   - lê o texto em blocos e grava `transcricoes/<id>/aula.md` com `# TRANSCRIÇÃO REVISADA` e `# RESUMO PARA CADERNO`;
   - em "parte N de TOTAL", lê os resumos das partes anteriores para continuar sem repetir;
   - sem link, oferece as aulas de `videos/catalogo.md` e pede o tema.
+- **Catálogo inicial com 19 videoaulas:** teclado, static, toString/equals/hashCode/compareTo/clone da classe Data, nomenclatura, tipos e wrappers, as seis do Fazedor de Continhas e as duas de banco de dados. A legenda em português de todas foi baixada com o script para conferir que funcionam.
 - **Roteamento:** nova linha nos quatro orquestradores.
 - **Documentação:** guia `docs/VIDEOAULAS.md` (uso, catálogo, limitações e problemas comuns), seção no README e nota no guia do Docker.
 - **`transcricoes/` fora do git e da imagem Docker:** o repositório é público e as aulas são só para os alunos.

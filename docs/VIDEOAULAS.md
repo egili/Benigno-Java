@@ -61,12 +61,12 @@ node scripts/transcrever-video.mjs "https://youtu.be/XXXXXXXXXXX" saida/   # out
 
 ## Catálogo de videoaulas
 
-O arquivo [`videos/catalogo.md`](../videos/catalogo.md) lista as aulas do professor que o Benigno já conhece: tema, parte, link e material relacionado. Quando você pede uma transcrição sem passar o link, ele diz que já tem acesso a essas aulas, mostra os temas e pede que você escolha um.
+O arquivo [`videos/catalogo.md`](../videos/catalogo.md) lista as 19 aulas do professor que o Benigno já conhece (teclado, static, os métodos obrigatórios da classe Data, nomenclatura, wrappers, Fazedor de Continhas e banco de dados), com tema, parte, duração, link e material relacionado. Quando você pede uma transcrição sem passar o link, ele diz que já tem acesso a essas aulas, mostra os temas e pede que você escolha um.
 
 Para incluir uma aula, acrescente uma linha na tabela:
 
 ```
-| Banco de dados em Java (JDBC) | 1 de 2 | https://youtu.be/XXXXXXXXXXX | `17) Material sobre acesso a BDs em programas feitos em Java/` |
+| Árvore binária | — | 1:00:00 | https://www.youtube.com/watch?v=XXXXXXXXXXX | `2) EXEMPLOS E EXERCÍCIOS/6) Arvore/` |
 ```
 
 ## Por que legenda do YouTube e não Whisper
