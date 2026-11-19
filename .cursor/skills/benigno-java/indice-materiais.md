@@ -2,7 +2,7 @@
 
 Use só depois de um `NAO_COBERTO` sem arquivo indicado. Leia **um** arquivo, não a pasta. Caminhos relativos a `Materias de aula/`.
 
-⚠️ = não compila ou tem bug conhecido (ver `maligno/erratas`). Arquivos ISO-8859-1: Agendas, Mes, Expl_09/10/15, Forca.
+⚠️ = não compila ou tem bug conhecido (ver `maligno/erratas`). Arquivos ISO-8859-1: Agendas, Mes, Expl_09/10/15, Forca, BD (`bd/core/*`, `Livro`).
 
 | Tema | Arquivo principal | Subagente |
 |---|---|---|
@@ -38,3 +38,4 @@ Use só depois de um `NAO_COBERTO` sem arquivo indicado. Leia **um** arquivo, n�
 | Simulado (necessidade dos métodos) | `4) PROVAS/Simulado da P1.pdf`, `Correção do Simulado da P1.txt` | metodos-necessidade |
 | Trabalho Jogo da Velha ⚠️ | `5) TRABALHOS (valendo nota)/` | trabalho-velha |
 | Threads e sockets (Continhas) | caderno p. 28–44 (sem `.java`) | threads-sockets |
+| Banco de dados (JDBC, BDSQLServer, DBO/DAO, classes core) | `17) Material sobre acesso a BDs em programas feitos em Java/BD/Demonstração com SQL Server/` e `BD/Outros BDs/` (⚠️ bugs em `maligno/erratas`; ISO-8859-1) | banco-de-dados |

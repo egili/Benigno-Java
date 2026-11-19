@@ -59,6 +59,7 @@ O roteamento completo está em `benigno-agente.md` nesta pasta.
 | Enum | `enum` |
 | package / jar | `pacotes-jar` |
 | Threads / sockets | `threads-sockets` |
+| Banco de dados / JDBC / DBO / DAO | `banco-de-dados` |
 | Jogo da Velha | `trabalho-velha` (+ métodos) |
 | Forca | `trabalho-forca` |
 | Dúvida / bug do material | `erratas` |

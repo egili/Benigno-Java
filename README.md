@@ -6,7 +6,7 @@ Funciona no **OpenCode**, no **Claude Code**, no **Antigravity**, no **Cursor** 
 
 ## Como funciona
 
-Todo o material (apostila, caderno, exemplos, provas, trabalho) foi lido **uma vez** e destilado em **38 subagentes especialistas** (`maligno/*`), cada um com as regras e os trechos de código do professor sobre um único tema.
+Todo o material (apostila, caderno, exemplos, provas, trabalho, videoaulas) foi lido **uma vez** e destilado em **39 subagentes especialistas** (`maligno/*`), cada um com as regras e os trechos de código do professor sobre um único tema.
 
 ```
 benigno (principal) ──► subagentes maligno/* ──► (último caso) 1 arquivo de Materias de aula/

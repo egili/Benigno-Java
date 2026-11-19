@@ -55,6 +55,12 @@ tools: [read_file]
 - [ ] `ondeEsta` com `pos+1` / `-(pos+1)`.
 - [ ] Genérico: `(X[])new Object[n]`, clona itens `Cloneable` via Clonador ao guardar e devolver.
 
+**Banco de dados (se houver; ver `maligno/banco-de-dados`)**
+- [ ] Um DBO (singular, `bd.dbos`) e um DAO (plural, `bd.daos`) por tabela; uma classe de conexão `BDxxx` com `public static final MeuPreparedStatement COMANDO` iniciado em `static { }`.
+- [ ] DAO sem atributos, métodos `static`, só as operações que o programa usa; valida `null`/"Não cadastrado" antes do `try`.
+- [ ] SQL com `?` e `setXxx` numerados a partir de 1; `SELECT` com `executeQuery` + cast `(MeuResultSet)`; o resto com `executeUpdate` + `commit`; `rollback` + `throw` no `catch (SQLException erro)`.
+- [ ] `MeuResultSet` posicionado (`first`/`next`) antes do `getXxx`; SQL válido (`UPDATE ... SET A=?, B=?`, um só `SET`).
+
 **Erros clássicos punidos**
 `void` no construtor; não validar `null`; não lançar exceção; método obrigatório desnecessário ou faltando; guardar referência de objeto mutável; deep copy faltando; `instanceof` no equals; `hashCode` inconsistente com `equals`; `compareTo` inconsistente com `equals`; NPE comparando com `null` (ex.: vencedor da Velha).
 

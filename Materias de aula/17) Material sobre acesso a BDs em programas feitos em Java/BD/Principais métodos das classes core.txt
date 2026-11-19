@@ -1,0 +1,51 @@
+Principais métodos encontrados em objetos
+da classe MeuPreparedStatement:
+
+void prepareStatement (String comandoSQL)
+
+void setByte   (int numInterrogacao, byte    b)
+void setShort  (int numInterrogacao, short   s)
+void setInt    (int numInterrogacao, int     i)
+void setLong   (int numInterrogacao, long    l)
+void setFloat  (int numInterrogacao, float   f)
+void setDouble (int numInterrogacao, double  d)
+void setString (int numInterrogacao, String  s)
+void setBoolean(int numInterrogacao, boolean b)
+
+void      executeUpdate()
+ResultSet executeQuery () // de fato resulta MeuResultSet
+
+void commit   () // sempre depois de executar insert, delete ou update
+void rollback () // sempre depois de executar insert, delete ou update mal sucedidos
+
+
+
+
+Principais métodos encontrados em objetos
+da classe MeuResultSet:
+
+boolean beforeFirst()
+boolean first()
+boolean next()
+boolean absolute(int numLinha)
+boolean relative(int deslocamento)
+boolean previous()
+boolean last()
+boolean afterLast()
+
+boolean isBeforeFirst()
+boolean isFirst()
+int     getRow()
+boolean isLast()
+boolean isAfterLast()
+
+byte    getByte   (nome ou numColuna)
+short   getShort  (nome ou numColuna)
+int     getInt    (nome ou numColuna)
+long    getLong   (nome ou numColuna)
+float   getFloat  (nome ou numColuna)
+double  getDouble (nome ou numColuna)
+String  getString (nome ou numColuna)
+boolean getBoolean(nome ou numColuna)
+...
+boolean wasNull()

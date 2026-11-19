@@ -1,7 +1,7 @@
 {
   "name": "benigno",
   "displayName": "Benigno",
-  "description": "Escreve e revisa Java no padrão do professor Maligno (PUC-Campinas, POO), com 38 subagentes especialistas maligno-* consultados em paralelo.",
+  "description": "Escreve e revisa Java no padrão do professor Maligno (PUC-Campinas, POO), com 39 subagentes especialistas maligno-* consultados em paralelo.",
   "version": "1.0.0",
   "author": { "name": "egili" },
   "repository": "https://github.com/egili/Benigno-Java",

@@ -14,6 +14,7 @@ Evolução das versões do agente Benigno, com as funcionalidades que mudaram em
 | **v6** | 10/11/2026 | Subagente de threads e sockets com o código do Fazedor de Continhas; contagem corrigida para 38 subagentes |
 | **v7** | 11/11/2026 | Versão para o uso do agente pelo cursor |
 | **v8** | 15/11/2026 | Versões para o Claude Code e o Antigravity, com os subagentes `maligno-*` em paralelo, e plugins RTK e context-mode para economizar tokens |
+| **v9** | 19/11/2026 | Subagente de banco de dados (JDBC, DBO/DAO) com o código da pasta `17)` e as videoaulas de BD; 39 subagentes |
 ---
 
 ## v1: agente único com leitura dos materiais
@@ -217,3 +218,33 @@ O Benigno passou a rodar no [Claude Code](https://claude.com/claude-code) e no [
 - Fora do Docker, o plugin do RTK só faz a ligação com o agente: ele age apenas se o binário `rtk` já estiver instalado no computador.
 - O context-mode não entra no Antigravity: a v2 dele tirou o suporte ao Antigravity/`agy`.
 - As regras são as mesmas do OpenCode; mudanças de conteúdo continuam partindo de `.opencode/agents/maligno/*.md` e precisam ser refeitas em `.claude/agents/` e `.agents/plugins/benigno/agents/`.
+
+---
+
+## v9: subagente de banco de dados
+
+**Data:** 19/11/2026
+
+O professor passou duas videoaulas assíncronas sobre acesso a banco de dados em Java, com o material da pasta `17) Material sobre acesso a BDs em programas feitos em Java/`. As duas transcrições foram lidas por inteiro e cruzadas com o código, que foi compilado e testado contra um banco em memória (H2 em modo SQL Server) para confirmar o fluxo e os bugs.
+
+### Funcionalidades
+- **Subagente `banco-de-dados`** (`maligno/banco-de-dados` no OpenCode e no Cursor, `maligno-banco-de-dados` no Claude Code e no Antigravity):
+  - driver do SGBD junto com o programa e no classpath do Compile e do Execute (`;` no Windows, `:` no Linux), com a tabela de drivers e strings de conexão de SQL Server, MySQL, Oracle e PostgreSQL;
+  - classes prontas `MeuStatement`, `MeuPreparedStatement` e `MeuResultSet` (por que existem, principais métodos, `setAutoCommit(false)`);
+  - classe de conexão `BDSQLServer` com `public static final MeuPreparedStatement COMANDO` iniciado no bloco `static` (o "construtor" da classe) e as quatro únicas coisas a trocar;
+  - um DBO (singular, `bd.dbos`) e um DAO (plural, `bd.daos`) por tabela: a "receitinha de bolo" do DBO e as regras do DAO (sem atributos, tudo `static`, só as operações usadas);
+  - `?` + `setXxx`, `executeQuery` para `SELECT`, `executeUpdate` + `commit` para o resto, `rollback` + `throw` no `catch`;
+  - navegação no `MeuResultSet` (before first, `first`/`next`/`absolute`...), `wasNull`, ausência de `getChar` e a regra que o professor mais repete: em BD tudo é numerado a partir de 1.
+- **Erros do material registrados em `erratas`:**
+  - `Livros.alterar` usa `UPDATE ... SET NOME=? SET PRECO=?` (dois `SET`), que o SGBD rejeita;
+  - `Livro.equals` (e o `equals` das classes `core`) sem o `!` na comparação;
+  - o construtor de cópia de `Livro` não testa `null`;
+  - `executeUpdate` listado como `void` no resumo de métodos, mas devolve `int`.
+- **Auditor:** checklist de banco de dados.
+- **Roteamento e índice de materiais:** novo tema em todas as plataformas.
+- **Contagem:** 39 subagentes no README, nos guias e no `plugin.json` do Antigravity.
+
+### Limitações
+- O material e o código do professor estão em ISO-8859-1. Para compilar com `-encoding UTF-8` (decisão do projeto), as classes `core` precisam ser convertidas antes.
+- O teste foi feito com H2, não com um SQL Server real.
+- As transcrições automáticas têm trechos ininteligíveis. O subagente só traz o que foi confirmado pelo código ou dito com clareza.

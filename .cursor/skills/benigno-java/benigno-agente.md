@@ -57,6 +57,7 @@ Nunca use os subagentes `explore`/`general` para ler os materiais: isso gasta os
 | enum | `enum` |
 | package, import, jar | `pacotes-jar` |
 | Threads, sockets, cliente/servidor (Continhas) | `threads-sockets` |
+| Banco de dados, JDBC, DBO/DAO, BDSQLServer, MeuResultSet | `banco-de-dados` (+ os de cada método obrigatório do DBO) |
 | Trabalho Jogo da Velha | `trabalho-velha` (+ os de cada método) |
 | Exercício da Forca | `trabalho-forca` |
 | "O material diz X, está certo?" / dúvida sobre bug do professor | `erratas` |

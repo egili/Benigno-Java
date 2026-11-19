@@ -1,0 +1,6 @@
+Crie uma tabela no BD com o seguinte comando:
+
+CREATE TABLE Livros (
+Codigo INT         PRIMARY KEY,
+Nome   VARCHAR(50) NOT NULL,
+Preco  SMALLMONEY  NOT NULL)
