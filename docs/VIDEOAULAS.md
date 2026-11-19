@@ -69,25 +69,6 @@ Para incluir uma aula, acrescente uma linha na tabela:
 | Árvore binária | — | 1:00:00 | https://www.youtube.com/watch?v=XXXXXXXXXXX | `2) EXEMPLOS E EXERCÍCIOS/6) Arvore/` |
 ```
 
-## Por que legenda do YouTube e não Whisper
-
-| | Legenda do YouTube (usada) | Whisper local |
-|---|---|---|
-| Instalação | Nenhuma, além do Node | Python, `ffmpeg` e um modelo de centenas de MB |
-| Tempo por aula de 1h50 | Segundos | 30 a 60 minutos sem placa de vídeo (estimativa) |
-| Qualidade bruta | Média, com erros em termos técnicos | Melhor |
-| Qualidade final | Boa: a revisão corrige os termos com o código do material | Boa |
-
-Como a revisão pelo modelo já corrige os erros da legenda, a diferença de qualidade final é pequena e não compensa o custo de instalação para cada aluno.
-
-## Limitações e cuidados
-
-- **Vídeo privado de verdade** (só para contas convidadas) não funciona: exigiria o login de quem tem acesso. Vídeos não listados funcionam.
-- **Vídeo sem legenda em português**, nem automática, não é transcrito.
-- **A pasta `transcricoes/` fica fora do git e da imagem Docker.** O repositório é público e as aulas são só para os alunos; não faça commit das transcrições.
-- **Os links do catálogo ficam públicos** junto com o repositório.
-- **Termos do YouTube:** baixar conteúdo vai contra os termos de uso. Use só para estudo pessoal e não redistribua as transcrições.
-
 ## Problemas comuns
 
 | Sintoma | Solução |
