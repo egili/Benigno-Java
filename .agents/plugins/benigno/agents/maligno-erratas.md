@@ -48,6 +48,10 @@ tools: [read_file]
 - `29) .../Servidor/Parceiro.java` (`espie`): `mutEx` não é liberado se `readObject` lançar exceção; a próxima chamada trava para sempre. Correção: `release()` no `finally`.
 - `29) .../Servidor/Servidor.java`: `comando.toLowerCase()` dá NPE quando `Teclado.getUmString()` devolve `null` (Ctrl+D). Correção: `"desativar".equalsIgnoreCase(comando)`.
 - `29) .../Servidor/SupervisoraDeConexao.java`: valida divisão por zero só no cliente; o servidor aplica `/0` e o valor vira `Infinity`. Correção: validar no servidor.
+- `17) .../Demonstração com SQL Server/bd/daos/Livros.java` (`alterar`): `"UPDATE LIVROS SET NOME=? SET PRECO=? ..."` tem dois `SET`; o SGBD rejeita e o método sempre lança "Erro ao atualizar dados de livro". Correção: `SET NOME=?, PRECO=?`.
+- `17) .../bd/dbos/Livro.java` (`equals`): `if (this.nome.equals(liv.nome)) return false;` sem `!` — dois livros iguais dão `false`. Mesmo `!` faltando no `equals` de `MeuStatement`/`MeuPreparedStatement`/`MeuResultSet` (`bd/core`). Correção: `!this.nome.equals(liv.nome)` e `getClass()` no lugar de `instanceof`.
+- `17) .../bd/dbos/Livro.java` (construtor de cópia): não testa `modelo==null`, embora o comentário do `clone` diga que lança exceção. Correção: `if (modelo==null) throw new Exception ("Modelo ausente");`.
+- `17) .../BD/Principais métodos das classes core.txt`: lista `void executeUpdate()`; no código devolve `int`.
 
 ## Afirmações da apostila/caderno que divergem do Java real
 - "Não existe divisão inteira em Java" — `int/int` trunca.
@@ -58,7 +62,7 @@ tools: [read_file]
 - `new Integer(...)` está obsoleto.
 
 ## Inconsistências de estilo (o projeto padronizou)
-hashCode (1/2 da prova × 666/13 × 666/7) → **prova**; constantes camelCase × MAIÚSCULAS → **MAIÚSCULAS**; `"Modelo nao fornecido"` × `"Modelo ausente"` → **"Modelo ausente"**; mensagens com/sem acento (Fazedor: `"Conexao ausente"`, `"Porta invalida"`) → **com acento**; `@Override` ausente no antigo → **sempre**; catch `e` × `erro` → **erro**.
+hashCode (1/2 da prova × 666/13 × 666/7, inclusive o `Livro` da pasta `17)`) → **prova**; constantes camelCase × MAIÚSCULAS → **MAIÚSCULAS**; `"Modelo nao fornecido"` × `"Modelo ausente"` → **"Modelo ausente"**; mensagens com/sem acento (Fazedor: `"Conexao ausente"`, `"Porta invalida"`) → **com acento**; `@Override` ausente no antigo → **sempre**; catch `e` × `erro` → **erro**.
 
 ## Encoding
-Material mistura ISO-8859-1 (Agendas, Mes, Expl_09/10/15, Forca) e UTF-8, CRLF e LF; `JogadorHumano.java` tem BOM. Salve tudo em UTF-8 e compile com `-encoding UTF-8`.
+Material mistura ISO-8859-1 (Agendas, Mes, Expl_09/10/15, Forca, `17) .../bd/core/*` e `Livro.java`) e UTF-8, CRLF e LF; `JogadorHumano.java` tem BOM. Salve tudo em UTF-8 e compile com `-encoding UTF-8`.

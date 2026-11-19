@@ -53,6 +53,7 @@ Nunca use os agentes genéricos (`Explore`/`general-purpose`) para varrer os mat
 | enum | `maligno-enum` |
 | package, import, jar | `maligno-pacotes-jar` |
 | Threads, sockets, cliente/servidor (Continhas) | `maligno-threads-sockets`; para montar ou conferir o projeto inteiro, use a skill `cliente-servidor-continhas` |
+| Banco de dados, JDBC, DBO/DAO, BDSQLServer, MeuResultSet | `maligno-banco-de-dados` (+ os de cada método obrigatório do DBO) |
 | Trabalho Jogo da Velha | `maligno-trabalho-velha` (+ os de cada método) |
 | Exercício da Forca | `maligno-trabalho-forca` |
 | Simulado da 2ª Prova (Fila, PadraoDeFila, FilaConsultavel) | `maligno-simulado-fila` (+ os de cada método) |
@@ -60,6 +61,7 @@ Nunca use os agentes genéricos (`Explore`/`general-purpose`) para varrer os mat
 | "O material diz X, está certo?" / dúvida sobre bug do professor | `maligno-erratas` |
 | Revisar/corrigir como o professor | `maligno-auditor` |
 | Criar prova/simulado/enunciado no estilo Maligno | use a skill `criar-prova-maligno` |
+| Transcrever ou resumir videoaula (link do YouTube, "parte N de TOTAL") | use a skill `transcrever-aula` |
 
 ## Decisões fixas deste projeto
 

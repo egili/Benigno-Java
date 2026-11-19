@@ -6,7 +6,7 @@ Funciona no **OpenCode**, no **Claude Code**, no **Antigravity**, no **Cursor** 
 
 ## Como funciona
 
-Todo o material (apostila, caderno, exemplos, provas, trabalho) foi lido **uma vez** e destilado em **38 subagentes especialistas** (`maligno/*`), cada um com as regras e os trechos de código do professor sobre um único tema.
+Todo o material (apostila, caderno, exemplos, provas, trabalho, videoaulas) foi lido **uma vez** e destilado em **39 subagentes especialistas** (`maligno/*`), cada um com as regras e os trechos de código do professor sobre um único tema.
 
 ```
 benigno (principal) ──► subagentes maligno/* ──► (último caso) 1 arquivo de Materias de aula/
@@ -38,7 +38,12 @@ Sem Git? Baixe o ZIP em <https://github.com/egili/Benigno-Java> (botão **Code �
 > *"Benigno, crie a classe Investimento com código, descrição, data de abertura, valor e taxa, com aplicar e resgatar."*  <br />
 > *"Benigno, implemente o Tabuleiro do Jogo da Velha."* <br />
 > *"Benigno, revise este código como o professor corrigiria."* <br />
+> *"Benigno, transcreva e resuma esta videoaula: https://youtu.be/..."* <br />
 
+
+## Videoaulas (desde a v9)
+
+Passe o link de uma videoaula do YouTube, pública ou não listada, e o Benigno entrega a **transcrição revisada** e o **resumo para caderno**, na ordem da aula. Só precisa de Node e internet. Sem link, ele mostra as aulas que já conhece (`videos/catalogo.md`) e pergunta o tema. Detalhes, limitações e problemas comuns em [docs/VIDEOAULAS.md](docs/VIDEOAULAS.md).
 
 ## MDD (Maligno Driven Development)
 

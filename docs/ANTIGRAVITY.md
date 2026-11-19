@@ -1,6 +1,6 @@
 # Usar o Benigno com Antigravity
 
-A partir da **v8** o Benigno também roda no [Google Antigravity](https://antigravity.google), no aplicativo e na CLI `agy`. Como no OpenCode e no Claude Code, o agente principal age como Benigno e delega aos 38 subagentes especialistas `maligno-*`. Para as outras formas de uso, veja o [README](../README.md).
+A partir da **v8** o Benigno também roda no [Google Antigravity](https://antigravity.google), no aplicativo e na CLI `agy`. Como no OpenCode e no Claude Code, o agente principal age como Benigno e delega aos 39 subagentes especialistas `maligno-*`. Para as outras formas de uso, veja o [README](../README.md).
 
 ## Como funciona
 
@@ -8,7 +8,7 @@ Não há prompt para colar. O Antigravity descobre sozinho os plugins em `.agent
 
 - **`.agents/plugins/benigno/`**: o plugin do Benigno.
   - **`skills/benigno-java/SKILL.md`**: a skill principal. Faz o agente agir como o Benigno: classificar o pedido, rotear e escrever o código.
-  - **`agents/maligno-*.md`**: os 38 subagentes especialistas (`maligno-equals`, `maligno-hashcode`, `maligno-auditor`, ...). Só têm a ferramenta de leitura, respondem com o conhecimento embutido (`REGRA / CÓDIGO / FONTE / ALERTAS`) e rodam em paralelo.
+  - **`agents/maligno-*.md`**: os 39 subagentes especialistas (`maligno-equals`, `maligno-hashcode`, `maligno-auditor`, ...). Só têm a ferramenta de leitura, respondem com o conhecimento embutido (`REGRA / CÓDIGO / FONTE / ALERTAS`) e rodam em paralelo.
   - **`skills/cliente-servidor-continhas/`** e **`skills/criar-prova-maligno/`**: skills auxiliares (projeto de threads/sockets e criação de enunciados no estilo Maligno).
   - **`rules/AGENTS.md`**: regra sempre ativa que manda usar a skill `benigno-java` em pedidos de Java da disciplina.
 - **`.agents/plugins/rtk/`**: o plugin do [RTK](https://github.com/rtk-ai/rtk), que reescreve os comandos do terminal para a versão enxuta (`git status` vira `rtk git status`) e economiza tokens.
@@ -59,9 +59,9 @@ Para forçar, digite `/benigno-java` ou peça *"use a skill benigno-java"*.
 
 ### 6. Conferir (opcional)
 ```bash
-ls .agents/plugins/benigno/agents | wc -l          # deve mostrar 38
+ls .agents/plugins/benigno/agents | wc -l          # deve mostrar 39
 agy plugin validate .agents/plugins/benigno         # skills 3 · agents 38 · rules 1
-agy -p "liste os subagentes maligno-* disponíveis"  # o agente deve citar os 38
+agy -p "liste os subagentes maligno-* disponíveis"  # o agente deve citar os 39
 ```
 
 Para desligar um dos plugins, use a tela de plugins do aplicativo ou `agy plugin disable rtk` (ou `benigno`).

@@ -14,6 +14,7 @@ Evolução das versões do agente Benigno, com as funcionalidades que mudaram em
 | **v6** | 10/11/2026 | Subagente de threads e sockets com o código do Fazedor de Continhas; contagem corrigida para 38 subagentes |
 | **v7** | 11/11/2026 | Versão para o uso do agente pelo cursor |
 | **v8** | 15/11/2026 | Versões para o Claude Code e o Antigravity, com os subagentes `maligno-*` em paralelo, e plugins RTK e context-mode para economizar tokens |
+| **v9** | 19/11/2026 | Subagente de banco de dados (JDBC, DBO/DAO) com o código da pasta `17)` e as videoaulas de BD; 39 subagentes; transcrição e resumo para caderno de videoaulas do YouTube a partir do link |
 ---
 
 ## v1: agente único com leitura dos materiais
@@ -217,3 +218,63 @@ O Benigno passou a rodar no [Claude Code](https://claude.com/claude-code) e no [
 - Fora do Docker, o plugin do RTK só faz a ligação com o agente: ele age apenas se o binário `rtk` já estiver instalado no computador.
 - O context-mode não entra no Antigravity: a v2 dele tirou o suporte ao Antigravity/`agy`.
 - As regras são as mesmas do OpenCode; mudanças de conteúdo continuam partindo de `.opencode/agents/maligno/*.md` e precisam ser refeitas em `.claude/agents/` e `.agents/plugins/benigno/agents/`.
+
+---
+
+## v9: subagente de banco de dados e transcrição de videoaulas
+
+**Data:** 19/11/2026
+
+O professor passou duas videoaulas assíncronas sobre acesso a banco de dados em Java, com o material da pasta `17) Material sobre acesso a BDs em programas feitos em Java/`. As duas transcrições foram lidas por inteiro e cruzadas com o código, que foi compilado e testado contra um banco em memória (H2 em modo SQL Server) para confirmar o fluxo e os bugs.
+
+### Funcionalidades
+- **Subagente `banco-de-dados`** (`maligno/banco-de-dados` no OpenCode e no Cursor, `maligno-banco-de-dados` no Claude Code e no Antigravity):
+  - driver do SGBD junto com o programa e no classpath do Compile e do Execute (`;` no Windows, `:` no Linux), com a tabela de drivers e strings de conexão de SQL Server, MySQL, Oracle e PostgreSQL;
+  - classes prontas `MeuStatement`, `MeuPreparedStatement` e `MeuResultSet` (por que existem, principais métodos, `setAutoCommit(false)`);
+  - classe de conexão `BDSQLServer` com `public static final MeuPreparedStatement COMANDO` iniciado no bloco `static` (o "construtor" da classe) e as quatro únicas coisas a trocar;
+  - um DBO (singular, `bd.dbos`) e um DAO (plural, `bd.daos`) por tabela: a "receitinha de bolo" do DBO e as regras do DAO (sem atributos, tudo `static`, só as operações usadas);
+  - `?` + `setXxx`, `executeQuery` para `SELECT`, `executeUpdate` + `commit` para o resto, `rollback` + `throw` no `catch`;
+  - navegação no `MeuResultSet` (before first, `first`/`next`/`absolute`...), `wasNull`, ausência de `getChar` e a regra que o professor mais repete: em BD tudo é numerado a partir de 1.
+- **Erros do material registrados em `erratas`:**
+  - `Livros.alterar` usa `UPDATE ... SET NOME=? SET PRECO=?` (dois `SET`), que o SGBD rejeita;
+  - `Livro.equals` (e o `equals` das classes `core`) sem o `!` na comparação;
+  - o construtor de cópia de `Livro` não testa `null`;
+  - `executeUpdate` listado como `void` no resumo de métodos, mas devolve `int`.
+- **Auditor:** checklist de banco de dados.
+- **Roteamento e índice de materiais:** novo tema em todas as plataformas.
+- **Contagem:** 39 subagentes no README, nos guias e no `plugin.json` do Antigravity.
+- **Mesma funcionalidade em todas as plataformas:**
+  - **Cursor:** ganhou os temas `simulado-fila` e `testes`, que faltavam. `erratas`, `threads-sockets` (com o código do Fazedor de Continhas) e o índice de materiais estavam na versão anterior à v6 e foram atualizados. A skill `cliente-servidor-continhas` foi adicionada. A `SKILL.md` foi refeita a partir da do Claude Code, com o mesmo roteamento, decisões e personalidade. `benigno-agente.md` voltou a ser espelho do `benigno` do OpenCode.
+  - **OpenCode:** o `benigno` ganhou a linha de roteamento de `criar-prova-maligno`, o tratamento de `NAO_COBERTO` que aponta outro subagente e a seção de compilação, que só existiam no Claude Code e no Antigravity. A skill `criar-prova-maligno` agora também fica em `.opencode/skills/`, porque o Docker não leva a `.claude/` e o Benigno do container ficava sem ela.
+  - Os 39 temas têm o mesmo corpo nas quatro plataformas.
+
+### Transcrição de videoaulas
+
+O professor passou a publicar videoaulas não listadas no YouTube. Agora basta passar o link para o Benigno entregar a transcrição revisada e o resumo para caderno.
+
+#### Funcionalidades
+- **Script `scripts/transcrever-video.mjs <link> [pasta]`:** baixa a legenda em português do vídeo (a do professor, se houver; senão a automática) e grava `transcricoes/<id>/bruta.txt` com blocos `[hh:mm:ss]`. Usa o `yt-dlp`, que o próprio script baixa para `~/.cache/benigno/` na primeira vez e atualiza se o YouTube mudar. Funciona com vídeo público ou não listado, sem login nem navegador. Só precisa de Node, que todas as plataformas já usam.
+- **Skill `transcrever-aula`** nas quatro plataformas e no Docker:
+  - roda o script e para, sem simular, se o vídeo não abrir ou não tiver legenda;
+  - corrige os termos técnicos conferindo com os nomes do material da aula;
+  - lê o texto em blocos e grava `transcricoes/<id>/aula.md` com `# TRANSCRIÇÃO REVISADA` e `# RESUMO PARA CADERNO`;
+  - em "parte N de TOTAL", lê os resumos das partes anteriores para continuar sem repetir;
+  - sem link, oferece as aulas de `videos/catalogo.md` e pede o tema.
+- **Catálogo inicial com 19 videoaulas:** teclado, static, toString/equals/hashCode/compareTo/clone da classe Data, nomenclatura, tipos e wrappers, as seis do Fazedor de Continhas e as duas de banco de dados. A legenda em português de todas foi baixada com o script para conferir que funcionam.
+- **Roteamento:** nova linha nos quatro orquestradores.
+- **Documentação:** guia `docs/VIDEOAULAS.md` (uso, catálogo, limitações e problemas comuns), seção no README e nota no guia do Docker.
+- **`transcricoes/` fora do git e da imagem Docker:** o repositório é público e as aulas são só para os alunos.
+
+#### Por que legenda e não Whisper
+- A legenda já existe no YouTube e sai em segundos; o Whisper local exige Python, `ffmpeg`, um modelo de centenas de MB e de 30 a 60 minutos por aula sem GPU.
+- Os erros da legenda automática ("bebê" no lugar de "BD") são corrigidos na revisão, cruzando com o código do material, como foi feito na v9.
+
+#### Limitações
+- Vídeo sem legenda em português (nem automática) não é transcrito.
+- Vídeo privado de verdade não funciona: exigiria o login de quem tem acesso.
+- Baixar conteúdo do YouTube vai contra os termos de uso dele; use só para estudo e não redistribua as transcrições.
+
+### Limitações do subagente de banco de dados
+- O material e o código do professor estão em ISO-8859-1. Para compilar com `-encoding UTF-8` (decisão do projeto), as classes `core` precisam ser convertidas antes.
+- O teste foi feito com H2, não com um SQL Server real.
+- As transcrições automáticas têm trechos ininteligíveis. O subagente só traz o que foi confirmado pelo código ou dito com clareza.
