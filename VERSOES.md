@@ -271,6 +271,7 @@ O professor passou a publicar videoaulas não listadas no YouTube. Agora basta p
   - em "parte N de TOTAL", lê os resumos das partes anteriores para continuar sem repetir;
   - sem link, oferece as aulas de `videos/catalogo.md` e pede o tema.
 - **Roteamento:** nova linha nos quatro orquestradores.
+- **Documentação:** guia `docs/VIDEOAULAS.md` (uso, catálogo, limitações e problemas comuns), seção no README e nota no guia do Docker.
 - **`transcricoes/` fora do git e da imagem Docker:** o repositório é público e as aulas são só para os alunos.
 
 ### Por que legenda e não Whisper

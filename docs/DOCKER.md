@@ -23,7 +23,7 @@ docker run -it --rm \
   -v benigno-login:/home/opencode/.local/share/opencode \
   benigno
 ```
-- `-v "$PWD":/benigno/projeto` monta o seu projeto dentro do container. Os arquivos criados pelo Benigno aparecem na sua pasta.
+- `-v "$PWD":/benigno/projeto` monta o seu projeto dentro do container. Os arquivos criados pelo Benigno aparecem na sua pasta. As transcrições de videoaulas também ficam ali, em `transcricoes/` (veja [VIDEOAULAS.md](VIDEOAULAS.md)).
 - `--user "$(id -u):$(id -g)"` faz os arquivos pertencerem a você, e não ao root.
 - `-v benigno-login:...` guarda o login do modelo num volume Docker, então você não precisa conectar de novo a cada uso.
 

@@ -41,6 +41,10 @@ Sem Git? Baixe o ZIP em <https://github.com/egili/Benigno-Java> (botão **Code �
 > *"Benigno, transcreva e resuma esta videoaula: https://youtu.be/..."* <br />
 
 
+## Videoaulas (desde a v10)
+
+Passe o link de uma videoaula do YouTube, pública ou não listada, e o Benigno entrega a **transcrição revisada** e o **resumo para caderno**, na ordem da aula. Só precisa de Node e internet. Sem link, ele mostra as aulas que já conhece (`videos/catalogo.md`) e pergunta o tema. Detalhes, limitações e problemas comuns em [docs/VIDEOAULAS.md](docs/VIDEOAULAS.md).
+
 ## MDD (Maligno Driven Development)
 
 O Benigno segue o que chamamos de **MDD**: escrever o código pensando no crivo do professor, não só no funcionamento. A explicação teórica (pilares, sintomas de código fora do padrão e escala de descontos) está em [docs/MDD.md](docs/MDD.md).
@@ -50,7 +54,6 @@ O Benigno segue o que chamamos de **MDD**: escrever o código pensando no crivo 
 - **Auditoria:** em trabalho valendo nota, peça *"rode o auditor"* antes de entregar. Ele lista onde o professor tiraria pontos (–1,5 por método obrigatório errado, faltando ou desnecessário).
 - **Java 8:** o Benigno evita `var`, `record`, streams e lambdas; se aparecer algo moderno, peça para refatorar.
 - **Compilação:** como as mensagens de exceção têm acento, compile com `javac -encoding UTF-8 *.java`.
-- **Videoaulas:** passe o link de um vídeo do YouTube público ou não listado e o Benigno entrega a transcrição revisada e o resumo para caderno em `transcricoes/<id>/aula.md` (fora do git). Só precisa de Node e internet; o `yt-dlp` é baixado sozinho na primeira vez. Sem link, ele oferece as aulas de `videos/catalogo.md`.
 - **Índice de materiais:** `.opencode/indice-materiais.md` mapeia cada tema ao arquivo de origem.
 
 ## Como colaborar
