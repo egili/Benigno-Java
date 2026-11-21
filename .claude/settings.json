@@ -11,10 +11,17 @@
         "source": "github",
         "repo": "egili/Benigno-Java"
       }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
     }
   },
   "enabledPlugins": {
     "context-mode@context-mode": true,
-    "rtk@benigno": true
+    "rtk@benigno": true,
+    "ponytail@ponytail": true
   }
 }

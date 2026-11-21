@@ -11,6 +11,8 @@ Desde a **v7** (11/11/2026, veja o [histórico](../VERSOES.md)), o Benigno tamb�
 
 Os arquivos em `.cursor/` espelham os de `.opencode/agents/`, então as regras são as mesmas nos dois.
 
+A regra `.cursor/rules/ponytail.mdc`, sempre ativa, traz o [ponytail](https://github.com/DietrichGebert/ponytail) (cópia da 5.3.3, licença MIT), que mantém a solução mínima, como no OpenCode. Vem com o projeto, sem instalar nada.
+
 ## Passo a passo
 
 ### 1. Ter o Cursor e um modelo
@@ -51,6 +53,7 @@ Para forçar a leitura da skill, peça: *"leia `.cursor/skills/benigno-java/SKIL
 ## Limitações
 - Sem subagentes: a consulta aos temas acontece em uma única sessão de chat, então respostas longas podem perder algum detalhe. Confira com o `auditor`.
 - A qualidade depende do modelo escolhido no Cursor.
+- O ponytail no Cursor é só a regra, no nível `full`: os comandos `/ponytail lite|ultra` e `/ponytail-review` exigiriam os hooks dele, que dependem de um clone do ponytail fora do projeto. Para desligar, apague `.cursor/rules/ponytail.mdc` da sua cópia.
 
 ## Outras formas de uso
 - [OpenCode](OPENCODE.md): instalação local completa, com subagentes.
