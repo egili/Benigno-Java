@@ -1,288 +1,140 @@
 # Log de versões do Benigno
 
-Evolução das versões do agente Benigno, com as funcionalidades que mudaram em cada uma.
+O que mudou em cada versão do Benigno.
 
 ## Resumo
 
 | Versão | Data | Principal novidade |
 |---|---|---|
-| **v1** | 25/10/2026 | Agente único que lê os materiais do professor e responde |
-| **v2** | 31/10/2026 | 36 subagentes especialistas e um agente orquestrador |
-| **v3** | 01/11/2026 | Personalidade oposta à do professor Maligno |
-| **v4** | 02/11/2026 | Uso com Docker, sem instalar OpenCode, Git ou JDK |
-| **v5** | 05/11/2026 | Subagentes do simulado da Fila e das classes de teste sem framework |
-| **v6** | 10/11/2026 | Subagente de threads e sockets com o código do Fazedor de Continhas; contagem corrigida para 38 subagentes |
-| **v7** | 11/11/2026 | Versão para o uso do agente pelo cursor |
-| **v8** | 15/11/2026 | Versões para o Claude Code e o Antigravity, com os subagentes `maligno-*` em paralelo, e plugins RTK e context-mode para economizar tokens |
-| **v9** | 19/11/2026 | Subagente de banco de dados (JDBC, DBO/DAO) com o código da pasta `17)` e as videoaulas de BD; 39 subagentes; transcrição e resumo para caderno de videoaulas do YouTube a partir do link; ponytail também no Claude Code, no Antigravity e no Cursor |
+| **v1** | 25/10/2026 | Primeiro Benigno: um agente que lê os materiais do professor e responde |
+| **v2** | 31/10/2026 | O conhecimento foi dividido em 36 subagentes, um por tema |
+| **v3** | 01/11/2026 | Personalidade carinhosa, o oposto do Maligno |
+| **v4** | 02/11/2026 | Uso pelo Docker, sem instalar quase nada |
+| **v5** | 05/11/2026 | Simulado e criação de testes |
+| **v6** | 10/11/2026 | Cliente/servidor com o código real do Fazedor de Continhas |
+| **v7** | 11/11/2026 | Versão para o Cursor |
+| **v8** | 15/11/2026 | Versões para o Claude Code e o Antigravity |
+| **v9** | 19/11/2026 | Banco de dados, transcrição de videoaulas e as mesmas funções em todas as plataformas |
+
 ---
 
-## v1: agente único com leitura dos materiais
+## v1: o primeiro Benigno
 
 **Data:** 25/10/2026
 
-Um único agente, com um prompt grande que o descrevia como um arquiteto de Java que imita o rigor do professor Maligno.
+- Um único agente que imitava o rigor do professor Maligno.
+- A cada pedido, lia os materiais de aula antes de responder e dizia de qual exemplo tirou a solução.
+- Já seguia os padrões do professor: leitura do teclado com a classe `Teclado`, validações, exceções em português, `toString`, `equals`, `hashCode` e `clone`.
 
-### Funcionalidades
-- **Consulta obrigatória aos materiais:** a cada tarefa, o agente lia `Materias de aula/` (exemplos `Expl_01` a `Expl_17`, apostila, caderno e PDFs) antes de propor uma solução.
-- **Citação das fontes:** a resposta indicava o exemplo de origem ou avisava que não havia referência similar.
-- **Mapa de temas para exemplos:** I/O e menus, matemática e tipos, contatos e arrays, genéricos e reflexão, enums.
-- **Padrões do professor embutidos no prompt:** `BufferedReader` no lugar de `Scanner`, classe `Teclado`, estilo Allman, `this.` explícito, validação precoce, exceções em português, contrato de objetos (`toString`, `equals`, `hashCode`), cópia e `clone()` com deep copy e `ondeEsta`.
-- **Plugin `ponytail`:** usado para manter a solução mínima.
-
-### Limitações
-- Cada tarefa podia ler muitos arquivos, o que gastava muitos tokens.
-- Um único prompt misturava roteamento, regras técnicas e comportamento, o que dificultava manter uma regra sem afetar as outras.
+**Problema:** ler os materiais a cada pedido era lento e caro.
 
 ---
 
-## v2: subagentes especialistas
+## v2: subagentes por tema
 
 **Data:** 31/10/2026
 
-O conhecimento que estava no prompt e nos materiais foi dividido em **36 subagentes especialistas**, cada um com as regras e os trechos de código do professor sobre um único tema. O agente principal virou um orquestrador, o `benigno`, que escolhe só os subagentes necessários para cada pedido.
+- Os materiais foram lidos uma vez e resumidos em **36 subagentes**, cada um sobre um tema (`equals`, herança, pilha, enum etc.).
+- O Benigno passou a só escolher quais subagentes consultar e juntar as respostas. Assim responde mais rápido e gasta menos.
+- Só quando nenhum subagente sabe, ele abre um arquivo do material, e só um.
+- Novidades:
+  - um **auditor**, que corrige o código como o professor e aponta onde perderia pontos;
+  - uma lista de **erros do material**, para o Benigno não copiar bugs do professor.
 
-### Funcionalidades
-- **Roteamento:** o `benigno` classifica o pedido e consulta apenas os subagentes do tema, em paralelo.
-- **Subagentes sem ferramentas:** respondem com o conhecimento embutido, no formato `REGRA / CÓDIGO / FONTE / ALERTAS`. Não leem arquivos.
-- **Leitura pontual dos materiais:** só quando um subagente não cobre o tema, ele indica um arquivo, e o `benigno` lê apenas esse arquivo. Não há varredura de `Materias de aula/`.
-- **Índice de materiais:** `.opencode/indice-materiais.md` mapeia cada tema ao arquivo de origem.
-- **Revisão final com `auditor`:** para trabalhos valendo nota, um subagente revisa o código como o professor corrigiria e aponta os pontos perdidos.
-- **Catálogo de erros do material (`erratas`):** bugs do material não são copiados.
-- **Padrões fixados:** prioridade entre fontes (caderno, correções de prova, exemplos recentes, apostila, exemplos antigos), mensagens de exceção com acento, `hashCode` da correção da prova, constantes em maiúsculas, compatibilidade com Java 8.
-- **README com passo a passo** de instalação e uso.
-
-### Subagentes por grupo
-| Grupo | Subagentes |
+| Grupo | Temas |
 |---|---|
-| Métodos obrigatórios | `metodos-necessidade`, `tostring`, `equals`, `hashcode`, `compareto`, `clone-copia` |
-| Construção e estado | `construtores`, `getters-setters`, `operacoes-imutaveis` |
-| Regras transversais | `nomenclatura`, `excecoes`, `estilo`, `encapsulamento`, `javadoc`, `tipos-wrappers` |
-| Entrada e saída | `teclado`, `main-menus` |
-| Estruturas | `vetores`, `busca-ondeesta`, `regex`, `genericos`, `clonador-reflexao`, `pilha`, `arvore`, `conjunto`, `colecoes` |
-| Hierarquia | `heranca`, `interface`, `classe-abstrata`, `enum`, `pacotes-jar` |
-| Avançado e trabalhos | `threads-sockets`, `trabalho-velha`, `trabalho-forca` |
-| Qualidade | `auditor`, `erratas` |
-
-### Por que economiza tokens
-- Os subagentes trazem só a regra necessária, em vez de reler os materiais a cada pedido.
-- O orquestrador consulta só os subagentes do tema.
-- Os materiais são lidos apenas no último caso, e só um arquivo por vez.
-
-> O projeto não mede o consumo de tokens. A economia é a intenção do desenho, não um número medido.
-
-### Uso
-- O OpenCode precisa ser aberto **dentro** da pasta do repositório, pois só encontra `.opencode/` no diretório atual ou nos superiores.
+| Métodos obrigatórios | `toString`, `equals`, `hashCode`, `compareTo`, `clone` e quando cada um é necessário |
+| Construção da classe | construtores, getters e setters, operações que devolvem um objeto novo |
+| Regras gerais | nomes, exceções, formatação, `public`/`private`/`static`, Javadoc, tipos |
+| Entrada e saída | teclado, `main` e menus |
+| Estruturas | vetores, busca, regex, genéricos, pilha, árvore, conjunto, `Vector`/`ArrayList` |
+| Hierarquia | herança, interface, classe abstrata, enum, pacotes e jar |
+| Avançado e trabalhos | threads e sockets, Jogo da Velha, Forca |
+| Qualidade | auditor, erros do material |
 
 ---
 
-## v3: personalidade oposta ao Maligno
+## v3: personalidade carinhosa
 
 **Data:** 01/11/2026
 
-O agente ganhou uma personalidade. Onde o professor chama os alunos de "pestes", "maligninhos" e "criaturinhas do mal", o Benigno os trata com carinho.
-
-### Funcionalidades
-- **Apelidos carinhosos:** "benigninho"/"benigninhos", "criaturinha do bem", "anjinho", "bençãozinha".
-- **Um apelido por resposta, no máximo,** e só quando couber naturalmente, no início ou no fim.
-- **Nunca em código, comentários, Javadoc ou mensagens de exceção.**
-- **Dose conforme o pedido:**
-  - pedido leve, dúvida ou elogio: apelido à vontade;
-  - revisão com erros graves: apelido gentil seguido de correção firme;
-  - pedido curto ou técnico: pode omitir.
-- **Conteúdo técnico sem suavização:** erro grave continua sendo chamado de erro grave.
+- Onde o professor chama os alunos de "pestes" e "maligninhos", o Benigno chama de "benigninho", "criaturinha do bem" ou "anjinho".
+- No máximo um apelido por resposta, e nunca dentro do código.
+- O carinho não esconde erro: erro grave continua sendo chamado de erro grave.
 
 ---
 
-## v4: uso com Docker
+## v4: uso pelo Docker
 
 **Data:** 02/11/2026
 
-Quem não quer instalar OpenCode, Git e JDK pode usar o Benigno por uma imagem Docker que já traz tudo. Só o Docker é necessário.
+- Quem não quer instalar nada além do Docker pode usar o Benigno por uma imagem pronta, que já traz o agente, o Java e o Git.
+- Os arquivos criados aparecem na pasta do seu projeto.
+- O login no modelo fica salvo entre um uso e outro.
+- Um comando confere se todo o seu código compila no Java 8, o da disciplina.
 
-### Funcionalidades
-- **Ambiente pronto:** a imagem traz OpenCode (versão fixada em 2.2.5), Git, JDK 17 e o plugin `ponytail` já instalado, então o primeiro uso não baixa nada extra.
-- **Projeto do aluno montado no container:** os arquivos criados pelo Benigno aparecem na pasta do aluno.
-- **Arquivos com o dono correto:** a opção `--user` evita que os arquivos pertençam ao root.
-- **Login salvo entre execuções:** um volume guarda a conexão com o modelo, então não é preciso conectar de novo a cada uso.
-- **Verificação de compilação:** o comando `verificar-java` compila os `.java` do projeto com Java 8 e mostra os erros, se houver. Sai com `OK` quando tudo compila.
-- **Seção "Usar com Docker" no README**, com build, execução e problemas comuns.
-
-### Como usar
-```bash
-docker run -it --rm \
-  --user "$(id -u):$(id -g)" \
-  -v "$PWD":/benigno/projeto \
-  -v benigno-login:/home/opencode/.local/share/opencode \
-  benigno
-```
-
-### Limitações
-- O modelo fica sob a conta do usuário, não na imagem.
-- Modelos locais como o Ollama não funcionam dentro do container, pois ele não enxerga o `127.0.0.1` do computador. Nesse modo, use modelos do OpenCode ou de um provedor em nuvem.
+**Limitação:** modelos que rodam no seu próprio computador (como o Ollama) não funcionam dentro do Docker.
 
 ---
 
-## v5: simulado da Fila e testes sem framework
+## v5: simulado e testes
 
 **Data:** 05/11/2026
 
-Dois subagentes novos e um ajuste no roteamento, para acompanhar o simulado da 2ª prova e para provar que cada classe implementada funciona.
-
-### Funcionalidades
-- **Subagente `simulado-fila`:** traz os requisitos do Simulado da 2ª Prova de 2026 (`PadraoDeFila`, `Fila` e `FilaConsultavel`): o que cada método faz, quando redimensionar o vetor (dobrar ao lotar, reduzir pela metade com 25% ou menos de ocupação), o que deve lançar exceção e os pontos de atenção de cópia, `equals`, `hashCode` e `clone`.
-- **Subagente `testes`:** para cada classe implementada, cria uma classe de teste executável (`<Classe>Teste.java`) que prova que os métodos funcionam como deveriam.
-  - Sem JUnit nem outro framework: só Java puro e `System.out`.
-  - Um `main` que imprime `OK` ou `FALHOU` para cada verificação e, no fim, o total de falhas.
-  - Cobre casos de sucesso, casos de exceção e a cópia profunda de `clone` e do construtor de cópia.
-- **Roteamento atualizado:** o `benigno` passa a encaminhar o simulado para `simulado-fila` e os pedidos de teste para `testes`.
-
-### Como rodar um teste
-```bash
-javac *.java
-java FilaTeste
-```
+- **Simulado:** um subagente com os requisitos de um simulado do professor.
+- **Testes:** para cada classe, o Benigno pode criar uma classe de teste simples, sem bibliotecas extras, que mostra `OK` ou `FALHOU` em cada verificação.
 
 ---
 
-## v6: código do Fazedor de Continhas
+## v6: Fazedor de Continhas
 
 **Data:** 10/11/2026
 
-O subagente de threads e sockets deixou de depender só do caderno. Agora ele usa o código do professor do Fazedor de Continhas (pastas `Cliente/` e `Servidor/`), que foi compilado para confirmar nomes, assinaturas e fluxo.
-
-### Funcionalidades
-- **Subagente `threads-sockets` reescrito com o código real:** `Parceiro` (com `proximoComunicado` e `mutEx`), `AceitadoraDeConexao`, `SupervisoraDeConexao`, `TratadoraDeComunicadoDeDesligamento`, cliente e servidor, com a ordem de criação das streams e as mensagens do professor.
-- **Erros do material registrados em `maligno/erratas`:**
-  - `Parceiro.espie` não libera o `mutEx` quando a leitura falha, e a próxima chamada trava;
-  - `comando.toLowerCase()` dá NPE no Ctrl+D;
-  - o servidor aceita divisão por zero, que o cliente barra.
-- **Mensagens com acento:** o código do professor escreve sem acento; o subagente aplica a decisão do projeto.
-- **Skill `cliente-servidor-continhas`:** fontes atualizadas (agora há `.java`) e checklist com os erros acima.
-- **Índice de materiais:** o tema de threads aponta para os `.java` da pasta `29)`.
-- **Agente `benigno`:** cabeçalho em v6 e roteamento de cliente/servidor com a skill.
-- **README:** contagem corrigida para **38 subagentes** (estava em 36, e a v5 já tinha acrescentado dois) e as tabelas agora listam `simulado-fila` e `testes`.
-
-### Fora desta versão
-- Os repositórios de trabalhos de alunos (`CRUD-AOS`, `Cotuca-2-Semestre-2021`, `Cotuca-3-Semestre2022`, `Jogo-da-Forca-em-Java`, `estruturaDeDadosII-final`) estão no repositório como ponteiros de repositório aninhado. Não são material do professor, então não viraram fonte de subagentes.
-
-### Limitações
-- O `Parceiro` e o restante do código de threads do professor têm os bugs listados acima. Os subagentes orientam a versão corrigida, mas não reescrevem o código do material.
+- O subagente de cliente/servidor passou a usar o código real do professor do Fazedor de Continhas, e não só o caderno.
+- Três erros desse código foram anotados para não serem copiados.
 
 ---
 
-## v8: uso com Claude Code e Antigravity, e plugins RTK e context-mode
+## v7: Cursor
+
+**Data:** 11/11/2026
+
+- O Benigno passou a funcionar no editor Cursor.
+- Como o Cursor não tem subagentes separados, o próprio agente lê os arquivos de cada tema quando precisa.
+
+---
+
+## v8: Claude Code e Antigravity
 
 **Data:** 15/11/2026
 
-O Benigno passou a rodar no [Claude Code](https://claude.com/claude-code) e no [Google Antigravity](https://antigravity.google), recuperando a arquitetura de subagentes em paralelo do OpenCode (que o Cursor, na v7, não tinha). Também passou a vir com dois plugins que reduzem o gasto de tokens: o **RTK**, que condensa a saída dos comandos do terminal, e o **context-mode**, que mantém saídas grandes (logs, arquivos longos, páginas) fora da conversa.
+- O Benigno passou a funcionar no Claude Code e no Google Antigravity, com os subagentes consultados ao mesmo tempo, como no OpenCode.
+- Ganhou complementos que economizam gasto do modelo: o **RTK** e o **context-mode**.
+- Tudo vem com o projeto: basta abrir a pasta.
 
-### Funcionalidades
-
-#### Claude Code
-- **Skill principal `.claude/skills/benigno-java/`:** aciona o Claude como Benigno, com o fluxo obrigatório, o roteamento, as decisões fixas e a personalidade. Delega aos subagentes com a ferramenta de agentes (Task), em paralelo.
-- **38 subagentes `.claude/agents/maligno-*.md`:** gerados a partir de `.opencode/agents/maligno/*.md` (mesmo conteúdo de regras), com frontmatter do Claude Code — restritos a leitura, modelo `haiku` (e `sonnet` no `maligno-auditor`).
-- **Skills auxiliares portadas:** `cliente-servidor-continhas` e `criar-prova-maligno`.
-- **Plugins no `.claude/settings.json` do projeto:** registra os marketplaces `context-mode` (`mksglu/context-mode`) e `benigno` (este repositório) e habilita `context-mode@context-mode` e `rtk@benigno`. Ao abrir o `claude` na pasta e confiar nela, o Claude Code oferece instalar os dois.
-- **Plugin próprio `plugins/rtk/` (marketplace `.claude-plugin/marketplace.json`):** o RTK não tem plugin oficial para o Claude Code. O plugin tem um hook `PreToolUse` no Bash que repassa o comando ao `rtk hook claude` (`git status` vira `rtk git status`) e um hook `SessionStart` que avisa o modelo de que a saída vem condensada e de quando usar `rtk bypass`. Sem o binário `rtk` no PATH, não faz nada.
-- **Guia `docs/CLAUDE.md`:** instalação, plugins, uso, verificação e problemas comuns.
-
-#### Antigravity
-- **Plugin de workspace `.agents/plugins/benigno/`:** descoberto sozinho pelo Antigravity ao abrir a pasta do repositório.
-  - **Skill `benigno-java`:** a mesma do Claude Code, com o trecho de delegação adaptado aos agentes personalizados do Antigravity.
-  - **38 subagentes `agents/maligno-*.md`:** mesmo corpo de `.claude/agents/`, com frontmatter do Antigravity (`subagent: true`, `mainAgent: false`, só `read_file`).
-  - **Skills auxiliares:** `cliente-servidor-continhas` e `criar-prova-maligno`.
-  - **Regra `rules/AGENTS.md`:** sempre ativa, manda usar a skill `benigno-java` em pedidos de Java da disciplina.
-- **Plugin `.agents/plugins/rtk/`:** gerado com `rtk init --agent antigravity`. O hook `PreToolUse` reescreve os comandos do terminal e não faz nada sem o binário `rtk`.
-- **Guia `docs/ANTIGRAVITY.md`:** instalação, uso, verificação e problemas comuns.
-
-#### OpenCode
-- **context-mode no `opencode.json`:** carregado junto com o `ponytail`.
-- **Plugin do RTK em `.opencode/plugins/rtk.ts`:** o plugin que o `rtk init --opencode` gera, agora dentro do projeto. Sem o binário `rtk` no PATH, não faz nada.
-- **Skill `benigno-java` do Claude Code bloqueada no `opencode.json`:** o OpenCode também lê `.claude/skills/`, e essa skill manda delegar aos subagentes com os nomes do Claude Code (`maligno-equals`), que não existem no OpenCode (`maligno/equals`). Uma regra `permissions` com `deny` esconde a skill do modelo. As outras skills de `.claude/skills/` continuam: `cliente-servidor-continhas` já é sobrescrita pela cópia de `.opencode/skills/`, e `criar-prova-maligno` funciona igual.
-
-#### Docker
-- **Imagem em Node 24:** versão exigida pelo context-mode.
-- **Binário `rtk` na imagem:** baixado da versão fixada no `Dockerfile` (`RTK_VERSION`), então o RTK funciona sem instalar nada.
-- **Só os arquivos do OpenCode na imagem:** o `.dockerignore` deixa de fora `.claude/`, `.claude-plugin/`, `.agents/`, `.cursor/`, `plugins/` e `.github/`. O container só roda o OpenCode, que também lê skills de `.claude/skills/`; sem essa exclusão, a skill do Claude Code e uma cópia de `cliente-servidor-continhas` apareciam no Benigno do container.
-
-#### Cursor
-- Sem plugins: os hooks do RTK no Cursor só existem na configuração global, o context-mode tirou o suporte ao Cursor e o `ponytail` é só do OpenCode.
-
-#### Documentação
-- **README e tabela de versões:** novas linhas de Claude Code e Antigravity e menção aos plugins.
-- **Tutoriais sem passo de instalação de plugins:** `ponytail`, `context-mode` e RTK vêm com o projeto em cada plataforma onde há suporte.
-
-### Limitações
-- Subagentes não disparam outros subagentes: quando um responde `NAO_COBERTO` apontando outro tema, é o agente principal que chama o próximo.
-- Fora do Docker, o plugin do RTK só faz a ligação com o agente: ele age apenas se o binário `rtk` já estiver instalado no computador.
-- O context-mode não entra no Antigravity: a v2 dele tirou o suporte ao Antigravity/`agy`.
-- As regras são as mesmas do OpenCode; mudanças de conteúdo continuam partindo de `.opencode/agents/maligno/*.md` e precisam ser refeitas em `.claude/agents/` e `.agents/plugins/benigno/agents/`.
+**Limitação:** o context-mode não funciona no Antigravity nem no Cursor.
 
 ---
 
-## v9: subagente de banco de dados e transcrição de videoaulas
+## v9: banco de dados, videoaulas e as mesmas funções em todas as plataformas
 
 **Data:** 19/11/2026
 
-O professor passou duas videoaulas assíncronas sobre acesso a banco de dados em Java, com o material da pasta `17) Material sobre acesso a BDs em programas feitos em Java/`. As duas transcrições foram lidas por inteiro e cruzadas com o código, que foi compilado e testado contra um banco em memória (H2 em modo SQL Server) para confirmar o fluxo e os bugs.
-
-### Funcionalidades
-- **Subagente `banco-de-dados`** (`maligno/banco-de-dados` no OpenCode e no Cursor, `maligno-banco-de-dados` no Claude Code e no Antigravity):
-  - driver do SGBD junto com o programa e no classpath do Compile e do Execute (`;` no Windows, `:` no Linux), com a tabela de drivers e strings de conexão de SQL Server, MySQL, Oracle e PostgreSQL;
-  - classes prontas `MeuStatement`, `MeuPreparedStatement` e `MeuResultSet` (por que existem, principais métodos, `setAutoCommit(false)`);
-  - classe de conexão `BDSQLServer` com `public static final MeuPreparedStatement COMANDO` iniciado no bloco `static` (o "construtor" da classe) e as quatro únicas coisas a trocar;
-  - um DBO (singular, `bd.dbos`) e um DAO (plural, `bd.daos`) por tabela: a "receitinha de bolo" do DBO e as regras do DAO (sem atributos, tudo `static`, só as operações usadas);
-  - `?` + `setXxx`, `executeQuery` para `SELECT`, `executeUpdate` + `commit` para o resto, `rollback` + `throw` no `catch`;
-  - navegação no `MeuResultSet` (before first, `first`/`next`/`absolute`...), `wasNull`, ausência de `getChar` e a regra que o professor mais repete: em BD tudo é numerado a partir de 1.
-- **Erros do material registrados em `erratas`:**
-  - `Livros.alterar` usa `UPDATE ... SET NOME=? SET PRECO=?` (dois `SET`), que o SGBD rejeita;
-  - `Livro.equals` (e o `equals` das classes `core`) sem o `!` na comparação;
-  - o construtor de cópia de `Livro` não testa `null`;
-  - `executeUpdate` listado como `void` no resumo de métodos, mas devolve `int`.
-- **Auditor:** checklist de banco de dados.
-- **Roteamento e índice de materiais:** novo tema em todas as plataformas.
-- **Contagem:** 39 subagentes no README, nos guias e no `plugin.json` do Antigravity.
-- **Mesma funcionalidade em todas as plataformas:**
-  - **Cursor:** ganhou os temas `simulado-fila` e `testes`, que faltavam. `erratas`, `threads-sockets` (com o código do Fazedor de Continhas) e o índice de materiais estavam na versão anterior à v6 e foram atualizados. A skill `cliente-servidor-continhas` foi adicionada. A `SKILL.md` foi refeita a partir da do Claude Code, com o mesmo roteamento, decisões e personalidade. `benigno-agente.md` voltou a ser espelho do `benigno` do OpenCode.
-  - **OpenCode:** o `benigno` ganhou a linha de roteamento de `criar-prova-maligno`, o tratamento de `NAO_COBERTO` que aponta outro subagente e a seção de compilação, que só existiam no Claude Code e no Antigravity. A skill `criar-prova-maligno` agora também fica em `.opencode/skills/`, porque o Docker não leva a `.claude/` e o Benigno do container ficava sem ela.
-  - Os 39 temas têm o mesmo corpo nas quatro plataformas.
+### Banco de dados
+- Novo subagente sobre banco de dados em Java, feito a partir das duas videoaulas do professor e do código da pasta de BD.
+- Cobre a conexão com o banco, as classes prontas do professor e as duas classes por tabela (uma para o item, outra para a tabela), além de incluir, alterar, excluir e consultar.
+- Destaca o que o professor mais repete: no banco de dados tudo é numerado a partir de 1.
+- Quatro erros do material do professor foram anotados para não serem copiados.
+- Agora são **39 subagentes**.
 
 ### Transcrição de videoaulas
+- Passe o link de uma videoaula do YouTube (pública ou não listada) e o Benigno entrega a **transcrição revisada** e um **resumo para o caderno**, na ordem da aula.
+- Se for a "parte 2 de 3", ele continua de onde a anterior parou, sem repetir.
+- Já conhece 19 aulas do professor. Se você não passar o link, ele mostra a lista e pergunta o tema.
+- As transcrições ficam só no seu computador e não vão para o repositório.
 
-O professor passou a publicar videoaulas não listadas no YouTube. Agora basta passar o link para o Benigno entregar a transcrição revisada e o resumo para caderno.
+**Limitações:** vídeo privado e vídeo sem legenda em português não funcionam.
 
-#### Funcionalidades
-- **Script `scripts/transcrever-video.mjs <link> [pasta]`:** baixa a legenda em português do vídeo (a do professor, se houver; senão a automática) e grava `transcricoes/<id>/bruta.txt` com blocos `[hh:mm:ss]`. Usa o `yt-dlp`, que o próprio script baixa para `~/.cache/benigno/` na primeira vez e atualiza se o YouTube mudar. Funciona com vídeo público ou não listado, sem login nem navegador. Só precisa de Node, que todas as plataformas já usam.
-- **Skill `transcrever-aula`** nas quatro plataformas e no Docker:
-  - roda o script e para, sem simular, se o vídeo não abrir ou não tiver legenda;
-  - corrige os termos técnicos conferindo com os nomes do material da aula;
-  - lê o texto em blocos e grava `transcricoes/<id>/aula.md` com `# TRANSCRIÇÃO REVISADA` e `# RESUMO PARA CADERNO`;
-  - em "parte N de TOTAL", lê os resumos das partes anteriores para continuar sem repetir;
-  - sem link, oferece as aulas de `videos/catalogo.md` e pede o tema.
-- **Catálogo inicial com 19 videoaulas:** teclado, static, toString/equals/hashCode/compareTo/clone da classe Data, nomenclatura, tipos e wrappers, as seis do Fazedor de Continhas e as duas de banco de dados. A legenda em português de todas foi baixada com o script para conferir que funcionam.
-- **Roteamento:** nova linha nos quatro orquestradores.
-- **Documentação:** guia `docs/VIDEOAULAS.md` (uso, catálogo, limitações e problemas comuns), seção no README e nota no guia do Docker.
-- **`transcricoes/` fora do git e da imagem Docker:** o repositório é público e as aulas são só para os alunos.
-
-#### Por que legenda e não Whisper
-- A legenda já existe no YouTube e sai em segundos; o Whisper local exige Python, `ffmpeg`, um modelo de centenas de MB e de 30 a 60 minutos por aula sem GPU.
-- Os erros da legenda automática ("bebê" no lugar de "BD") são corrigidos na revisão, cruzando com o código do material, como foi feito na v9.
-
-#### Limitações
-- Vídeo sem legenda em português (nem automática) não é transcrito.
-- Vídeo privado de verdade não funciona: exigiria o login de quem tem acesso.
-- Baixar conteúdo do YouTube vai contra os termos de uso dele; use só para estudo e não redistribua as transcrições.
-
-### Ponytail em todas as plataformas
-O `ponytail`, que mantém a solução mínima, só existia no OpenCode (e no Docker). Agora vem com o projeto nas outras três, sem passo de instalação:
-- **Claude Code:** marketplace `DietrichGebert/ponytail` e plugin `ponytail@ponytail` no `.claude/settings.json`, como o context-mode. Tem tudo: níveis `lite`/`full`/`ultra` e os comandos `/ponytail-*`.
-- **Antigravity:** plugin de workspace `.agents/plugins/ponytail/`, cópia da versão 5.3.3 (MIT, com a licença junto): regra sempre ativa e as seis skills. O nível não fica salvo entre sessões.
-- **Cursor:** regra sempre ativa `.cursor/rules/ponytail.mdc`, cópia da 5.3.3. Só o nível `full`, sem os comandos.
-- **Orquestradores:** a skill `benigno-java` do Claude Code, do Antigravity e do Cursor ganhou a linha sobre o `ponytail` que o `benigno` do OpenCode já tinha.
-- As cópias do Antigravity e do Cursor não se atualizam sozinhas: para outra versão, copie de novo `skills/`, `AGENTS.md`, `LICENSE` e `.cursor/rules/ponytail.mdc` do repositório do ponytail.
-
-### Limitações do subagente de banco de dados
-- O material e o código do professor estão em ISO-8859-1. Para compilar com `-encoding UTF-8` (decisão do projeto), as classes `core` precisam ser convertidas antes.
-- O teste foi feito com H2, não com um SQL Server real.
-- As transcrições automáticas têm trechos ininteligíveis. O subagente só traz o que foi confirmado pelo código ou dito com clareza.
+### Mesmas funções em todas as plataformas
+- OpenCode, Claude Code, Antigravity e Cursor têm agora os mesmos subagentes, as mesmas regras e as mesmas funções extras: criar prova ou simulado, montar o cliente/servidor e transcrever videoaulas.
+- O **ponytail**, que mantém o código o mais simples possível, deixou de ser só do OpenCode e foi para as outras três. No Cursor ele vem numa versão reduzida, sem os comandos extras.

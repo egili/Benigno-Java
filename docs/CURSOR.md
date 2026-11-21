@@ -1,11 +1,11 @@
 # Usar o Benigno com Cursor
 
-Desde a **v7** (11/11/2026, veja o [histórico](../VERSOES.md)), o Benigno também funciona no Cursor. Ele usa as mesmas regras do OpenCode, mas sem subagentes: o próprio modelo lê os arquivos de regra e de tema quando precisa.
+Desde a **v7** (11/11/2026, veja o [histórico](../VERSOES.md)), o Benigno também funciona no Cursor. Ele usa as mesmas regras do OpenCode, mas sem subagentes: o próprio agente lê os arquivos de regra e de tema quando precisa.
 
 ## Como funciona
 1. Ao trabalhar em um `.java` do repositório, o Cursor aplica a regra `.cursor/rules/benigno.mdc`.
 2. Essa regra manda ler a skill `.cursor/skills/benigno-java/SKILL.md`, que define o roteamento.
-3. O modelo lê só os temas necessários em `.cursor/skills/benigno-java/maligno/`. Para o Jogo da Velha, a regra já aponta `trabalho-velha.md`.
+3. O agente lê só os temas necessários em `.cursor/skills/benigno-java/maligno/`. Para o Jogo da Velha, a regra já aponta `trabalho-velha.md`.
 4. Se nenhum tema cobrir o assunto, o `indice-materiais.md` aponta o arquivo de origem.
 5. Em trabalho valendo nota, o `auditor` é lido no final.
 
