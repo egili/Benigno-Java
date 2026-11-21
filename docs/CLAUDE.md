@@ -9,7 +9,7 @@ Não há prompt para colar. Os arquivos ficam em `.claude/`, dentro do repositó
 - **`.claude/skills/benigno-java/SKILL.md`** — a skill principal. Quando você pede o Benigno (ou código no padrão Maligno), ela entra em contexto e faz o Claude agir como o Benigno: classificar o pedido, rotear e escrever o código.
 - **`.claude/agents/maligno-*.md`** — os 39 subagentes especialistas (um por tema: `maligno-equals`, `maligno-hashcode`, `maligno-heranca`, `maligno-auditor`, ...). São restritos a leitura, respondem só com o conhecimento embutido (`REGRA / CÓDIGO / FONTE / ALERTAS`) e rodam em paralelo.
 - **`.claude/skills/cliente-servidor-continhas/`** e **`.claude/skills/criar-prova-maligno/`** — skills auxiliares (projeto de threads/sockets e criação de enunciados no estilo Maligno).
-- **`.claude/settings.json`** — habilita os plugins **RTK** (`plugins/rtk/`, deste repositório) e **context-mode**, que economizam tokens. Eles vêm com o projeto.
+- **`.claude/settings.json`** — habilita os plugins **RTK** (`plugins/rtk/`, deste repositório) e **context-mode**, que economizam tokens, e o **[ponytail](https://github.com/DietrichGebert/ponytail)**, que mantém a solução mínima (comandos `/ponytail lite|full|ultra`, `/ponytail-review`, `/ponytail-audit`). Eles vêm com o projeto.
 
 ```
 Claude (como Benigno) ──► subagentes maligno-* (em paralelo) ──► (último caso) 1 arquivo de Materias de aula/
@@ -65,7 +65,7 @@ Para forçar, digite `/benigno-java` (a skill aparece na lista de `/`) ou peça 
 ls .claude/agents | wc -l      # deve mostrar 39 (os subagentes maligno-*)
 ls .claude/skills              # benigno-java, cliente-servidor-continhas, criar-prova-maligno
 ```
-Dentro do `claude`, `/agents` lista os subagentes disponíveis, `/skills` as skills e `/plugin` os plugins instalados (`context-mode` e `rtk`).
+Dentro do `claude`, `/agents` lista os subagentes disponíveis, `/skills` as skills e `/plugin` os plugins instalados (`context-mode`, `rtk` e `ponytail`).
 
 ## Problemas comuns
 

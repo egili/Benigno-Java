@@ -14,7 +14,7 @@ Evolução das versões do agente Benigno, com as funcionalidades que mudaram em
 | **v6** | 10/11/2026 | Subagente de threads e sockets com o código do Fazedor de Continhas; contagem corrigida para 38 subagentes |
 | **v7** | 11/11/2026 | Versão para o uso do agente pelo cursor |
 | **v8** | 15/11/2026 | Versões para o Claude Code e o Antigravity, com os subagentes `maligno-*` em paralelo, e plugins RTK e context-mode para economizar tokens |
-| **v9** | 19/11/2026 | Subagente de banco de dados (JDBC, DBO/DAO) com o código da pasta `17)` e as videoaulas de BD; 39 subagentes; transcrição e resumo para caderno de videoaulas do YouTube a partir do link |
+| **v9** | 19/11/2026 | Subagente de banco de dados (JDBC, DBO/DAO) com o código da pasta `17)` e as videoaulas de BD; 39 subagentes; transcrição e resumo para caderno de videoaulas do YouTube a partir do link; ponytail também no Claude Code, no Antigravity e no Cursor |
 ---
 
 ## v1: agente único com leitura dos materiais
@@ -273,6 +273,14 @@ O professor passou a publicar videoaulas não listadas no YouTube. Agora basta p
 - Vídeo sem legenda em português (nem automática) não é transcrito.
 - Vídeo privado de verdade não funciona: exigiria o login de quem tem acesso.
 - Baixar conteúdo do YouTube vai contra os termos de uso dele; use só para estudo e não redistribua as transcrições.
+
+### Ponytail em todas as plataformas
+O `ponytail`, que mantém a solução mínima, só existia no OpenCode (e no Docker). Agora vem com o projeto nas outras três, sem passo de instalação:
+- **Claude Code:** marketplace `DietrichGebert/ponytail` e plugin `ponytail@ponytail` no `.claude/settings.json`, como o context-mode. Tem tudo: níveis `lite`/`full`/`ultra` e os comandos `/ponytail-*`.
+- **Antigravity:** plugin de workspace `.agents/plugins/ponytail/`, cópia da versão 5.3.3 (MIT, com a licença junto): regra sempre ativa e as seis skills. O nível não fica salvo entre sessões.
+- **Cursor:** regra sempre ativa `.cursor/rules/ponytail.mdc`, cópia da 5.3.3. Só o nível `full`, sem os comandos.
+- **Orquestradores:** a skill `benigno-java` do Claude Code, do Antigravity e do Cursor ganhou a linha sobre o `ponytail` que o `benigno` do OpenCode já tinha.
+- As cópias do Antigravity e do Cursor não se atualizam sozinhas: para outra versão, copie de novo `skills/`, `AGENTS.md`, `LICENSE` e `.cursor/rules/ponytail.mdc` do repositório do ponytail.
 
 ### Limitações do subagente de banco de dados
 - O material e o código do professor estão em ISO-8859-1. Para compilar com `-encoding UTF-8` (decisão do projeto), as classes `core` precisam ser convertidas antes.

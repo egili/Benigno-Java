@@ -12,6 +12,7 @@ Não há prompt para colar. O Antigravity descobre sozinho os plugins em `.agent
   - **`skills/cliente-servidor-continhas/`** e **`skills/criar-prova-maligno/`**: skills auxiliares (projeto de threads/sockets e criação de enunciados no estilo Maligno).
   - **`rules/AGENTS.md`**: regra sempre ativa que manda usar a skill `benigno-java` em pedidos de Java da disciplina.
 - **`.agents/plugins/rtk/`**: o plugin do [RTK](https://github.com/rtk-ai/rtk), que reescreve os comandos do terminal para a versão enxuta (`git status` vira `rtk git status`) e economiza tokens.
+- **`.agents/plugins/ponytail/`**: cópia do [ponytail](https://github.com/DietrichGebert/ponytail) 5.3.3 (licença MIT), que mantém a solução mínima. Traz a regra sempre ativa e as skills `/ponytail-review`, `/ponytail-audit`, `/ponytail-debt`, `/ponytail-help` e `/ponytail-gain`. O nível (`lite`/`full`/`ultra`) não fica salvo entre sessões, porque o Antigravity não tem os hooks que o ponytail usa para isso.
 
 ```
 Antigravity (como Benigno) ──► subagentes maligno-* (em paralelo) ──► (último caso) 1 arquivo de Materias de aula/
@@ -60,11 +61,11 @@ Para forçar, digite `/benigno-java` ou peça *"use a skill benigno-java"*.
 ### 6. Conferir (opcional)
 ```bash
 ls .agents/plugins/benigno/agents | wc -l          # deve mostrar 39
-agy plugin validate .agents/plugins/benigno         # skills 3 · agents 38 · rules 1
+agy plugin validate .agents/plugins/benigno         # skills 4 · agents 39 · rules 1
 agy -p "liste os subagentes maligno-* disponíveis"  # o agente deve citar os 39
 ```
 
-Para desligar um dos plugins, use a tela de plugins do aplicativo ou `agy plugin disable rtk` (ou `benigno`).
+Para desligar um dos plugins, use a tela de plugins do aplicativo ou `agy plugin disable rtk` (ou `ponytail`, `benigno`).
 
 ## Problemas comuns
 
@@ -85,6 +86,6 @@ Para desligar um dos plugins, use a tela de plugins do aplicativo ou `agy plugin
 ## Outras formas de uso
 
 - [OpenCode](OPENCODE.md): instalação local completa, com subagentes.
-- [Claude Code](CLAUDE.md): com subagentes e plugins RTK/context-mode.
+- [Claude Code](CLAUDE.md): com subagentes e plugins ponytail, RTK e context-mode.
 - [Docker](DOCKER.md): sem instalar nada além do Docker.
 - [Cursor](CURSOR.md): usando o Cursor como editor.
