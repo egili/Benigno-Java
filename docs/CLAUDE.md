@@ -1,13 +1,13 @@
 # Usar o Benigno com Claude Code
 
-A partir da **v8** o Benigno também roda no [Claude Code](https://claude.com/claude-code), o agente de linha de comando da Anthropic. Aqui ele recupera a arquitetura de **subagentes em paralelo** do OpenCode: o Claude principal age como Benigno e delega aos 39 especialistas `maligno-*`. Para as outras formas de uso, veja o [README](../README.md).
+A partir da **v8** o Benigno também roda no [Claude Code](https://claude.com/claude-code), o agente de linha de comando da Anthropic. Aqui ele recupera a arquitetura de **subagentes em paralelo** do OpenCode: o Claude principal age como Benigno e delega aos 39 subagentes `maligno-*`. Para as outras formas de uso, veja o [README](../README.md).
 
 ## Como funciona
 
 Não há prompt para colar. Os arquivos ficam em `.claude/`, dentro do repositório:
 
 - **`.claude/skills/benigno-java/SKILL.md`** — a skill principal. Quando você pede o Benigno (ou código no padrão Maligno), ela entra em contexto e faz o Claude agir como o Benigno: classificar o pedido, rotear e escrever o código.
-- **`.claude/agents/maligno-*.md`** — os 39 subagentes especialistas (um por tema: `maligno-equals`, `maligno-hashcode`, `maligno-heranca`, `maligno-auditor`, ...). São restritos a leitura, respondem só com o conhecimento embutido (`REGRA / CÓDIGO / FONTE / ALERTAS`) e rodam em paralelo.
+- **`.claude/agents/maligno-*.md`** — os 39 subagentes (um por tema: `maligno-equals`, `maligno-hashcode`, `maligno-heranca`, `maligno-auditor`, ...). São restritos a leitura, respondem só com o conhecimento embutido (`REGRA / CÓDIGO / FONTE / ALERTAS`) e rodam em paralelo.
 - **`.claude/skills/cliente-servidor-continhas/`** e **`.claude/skills/criar-prova-maligno/`** — skills auxiliares (projeto de threads/sockets e criação de enunciados no estilo Maligno).
 - **`.claude/settings.json`** — habilita os plugins **RTK** (`plugins/rtk/`, deste repositório) e **context-mode**, que economizam tokens, e o **[ponytail](https://github.com/DietrichGebert/ponytail)**, que mantém a solução mínima (comandos `/ponytail lite|full|ultra`, `/ponytail-review`, `/ponytail-audit`). Eles vêm com o projeto.
 

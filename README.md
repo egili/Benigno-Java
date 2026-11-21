@@ -1,6 +1,6 @@
 # O Benigno 
 
-O Benigno é um assistente que escreve e revisa trabalhos de Java no padrão exato que o professor Maligno cobra: não só código que funciona, mas código que o professor *espera* ver para dar a nota máxima.
+O Benigno é um agente que escreve e revisa trabalhos de Java no padrão exato que o professor Maligno cobra: não só código que funciona, mas código que o professor *espera* ver para dar a nota máxima.
 
 Funciona no **OpenCode**, no **Claude Code**, no **Antigravity**, no **Cursor** e no **Docker**.
 
@@ -16,7 +16,7 @@ você pede ──► Benigno escolhe os subagentes ──► eles respondem ─�
 2. Cada subagente responde com a regra do professor, um exemplo de código e de onde tirou.
 3. Se nenhum subagente souber, o Benigno abre **um único** arquivo do material para conferir.
 
-Assim ele responde rápido e sem reler o material inteiro a cada pedido. No Cursor não há subagentes separados: o próprio modelo lê os arquivos de cada tema quando precisa, e o resultado é o mesmo.
+Assim ele responde rápido e sem reler o material inteiro a cada pedido. No Cursor não há subagentes separados: o próprio agente lê os arquivos de cada tema quando precisa, e o resultado é o mesmo.
 
 ## Escolha como usar
 

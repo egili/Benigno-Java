@@ -100,7 +100,7 @@ O que mudou em cada versão do Benigno.
 **Data:** 11/11/2026
 
 - O Benigno passou a funcionar no editor Cursor.
-- Como o Cursor não tem subagentes separados, o próprio modelo lê os arquivos de cada tema quando precisa.
+- Como o Cursor não tem subagentes separados, o próprio agente lê os arquivos de cada tema quando precisa.
 
 ---
 
