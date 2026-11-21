@@ -10,7 +10,7 @@ O que mudou em cada versão do Benigno.
 | **v2** | 31/10/2026 | O conhecimento foi dividido em 36 subagentes, um por tema |
 | **v3** | 01/11/2026 | Personalidade carinhosa, o oposto do Maligno |
 | **v4** | 02/11/2026 | Uso pelo Docker, sem instalar quase nada |
-| **v5** | 05/11/2026 | Simulado da Fila e criação de testes |
+| **v5** | 05/11/2026 | Simulado e criação de testes |
 | **v6** | 10/11/2026 | Cliente/servidor com o código real do Fazedor de Continhas |
 | **v7** | 11/11/2026 | Versão para o Cursor |
 | **v8** | 15/11/2026 | Versões para o Claude Code e o Antigravity |
@@ -77,11 +77,11 @@ O que mudou em cada versão do Benigno.
 
 ---
 
-## v5: simulado da Fila e testes
+## v5: simulado e testes
 
 **Data:** 05/11/2026
 
-- **Simulado da 2ª prova:** um subagente com os requisitos da Fila do simulado de 2026.
+- **Simulado:** um subagente com os requisitos de um simulado do professor.
 - **Testes:** para cada classe, o Benigno pode criar uma classe de teste simples, sem bibliotecas extras, que mostra `OK` ou `FALHOU` em cada verificação.
 
 ---
