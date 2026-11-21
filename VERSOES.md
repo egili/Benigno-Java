@@ -7,7 +7,7 @@ O que mudou em cada versão do Benigno.
 | Versão | Data | Principal novidade |
 |---|---|---|
 | **v1** | 25/10/2026 | Primeiro Benigno: um agente que lê os materiais do professor e responde |
-| **v2** | 31/10/2026 | O conhecimento foi dividido em 36 especialistas, um por tema |
+| **v2** | 31/10/2026 | O conhecimento foi dividido em 36 subagentes, um por tema |
 | **v3** | 01/11/2026 | Personalidade carinhosa, o oposto do Maligno |
 | **v4** | 02/11/2026 | Uso pelo Docker, sem instalar quase nada |
 | **v5** | 05/11/2026 | Simulado da Fila e criação de testes |
@@ -30,13 +30,13 @@ O que mudou em cada versão do Benigno.
 
 ---
 
-## v2: especialistas por tema
+## v2: subagentes por tema
 
 **Data:** 31/10/2026
 
-- Os materiais foram lidos uma vez e resumidos em **36 especialistas**, cada um sobre um tema (`equals`, herança, pilha, enum etc.).
-- O Benigno passou a só escolher quais especialistas consultar e juntar as respostas. Assim responde mais rápido e gasta menos.
-- Só quando nenhum especialista sabe, ele abre um arquivo do material, e só um.
+- Os materiais foram lidos uma vez e resumidos em **36 subagentes**, cada um sobre um tema (`equals`, herança, pilha, enum etc.).
+- O Benigno passou a só escolher quais subagentes consultar e juntar as respostas. Assim responde mais rápido e gasta menos.
+- Só quando nenhum subagente sabe, ele abre um arquivo do material, e só um.
 - Novidades:
   - um **auditor**, que corrige o código como o professor e aponta onde perderia pontos;
   - uma lista de **erros do material**, para o Benigno não copiar bugs do professor.
@@ -81,7 +81,7 @@ O que mudou em cada versão do Benigno.
 
 **Data:** 05/11/2026
 
-- **Simulado da 2ª prova:** um especialista com os requisitos da Fila do simulado de 2026.
+- **Simulado da 2ª prova:** um subagente com os requisitos da Fila do simulado de 2026.
 - **Testes:** para cada classe, o Benigno pode criar uma classe de teste simples, sem bibliotecas extras, que mostra `OK` ou `FALHOU` em cada verificação.
 
 ---
@@ -90,7 +90,7 @@ O que mudou em cada versão do Benigno.
 
 **Data:** 10/11/2026
 
-- O especialista de cliente/servidor passou a usar o código real do professor do Fazedor de Continhas, e não só o caderno.
+- O subagente de cliente/servidor passou a usar o código real do professor do Fazedor de Continhas, e não só o caderno.
 - Três erros desse código foram anotados para não serem copiados.
 
 ---
@@ -100,7 +100,7 @@ O que mudou em cada versão do Benigno.
 **Data:** 11/11/2026
 
 - O Benigno passou a funcionar no editor Cursor.
-- Como o Cursor não tem especialistas separados, o próprio modelo lê os arquivos de cada tema quando precisa.
+- Como o Cursor não tem subagentes separados, o próprio modelo lê os arquivos de cada tema quando precisa.
 
 ---
 
@@ -108,7 +108,7 @@ O que mudou em cada versão do Benigno.
 
 **Data:** 15/11/2026
 
-- O Benigno passou a funcionar no Claude Code e no Google Antigravity, com os especialistas consultados ao mesmo tempo, como no OpenCode.
+- O Benigno passou a funcionar no Claude Code e no Google Antigravity, com os subagentes consultados ao mesmo tempo, como no OpenCode.
 - Ganhou complementos que economizam gasto do modelo: o **RTK** e o **context-mode**.
 - Tudo vem com o projeto: basta abrir a pasta.
 
@@ -121,11 +121,11 @@ O que mudou em cada versão do Benigno.
 **Data:** 19/11/2026
 
 ### Banco de dados
-- Novo especialista sobre banco de dados em Java, feito a partir das duas videoaulas do professor e do código da pasta de BD.
+- Novo subagente sobre banco de dados em Java, feito a partir das duas videoaulas do professor e do código da pasta de BD.
 - Cobre a conexão com o banco, as classes prontas do professor e as duas classes por tabela (uma para o item, outra para a tabela), além de incluir, alterar, excluir e consultar.
 - Destaca o que o professor mais repete: no banco de dados tudo é numerado a partir de 1.
 - Quatro erros do material do professor foram anotados para não serem copiados.
-- Agora são **39 especialistas**.
+- Agora são **39 subagentes**.
 
 ### Transcrição de videoaulas
 - Passe o link de uma videoaula do YouTube (pública ou não listada) e o Benigno entrega a **transcrição revisada** e um **resumo para o caderno**, na ordem da aula.
@@ -136,5 +136,5 @@ O que mudou em cada versão do Benigno.
 **Limitações:** vídeo privado e vídeo sem legenda em português não funcionam.
 
 ### Mesmas funções em todas as plataformas
-- OpenCode, Claude Code, Antigravity e Cursor têm agora os mesmos especialistas, as mesmas regras e as mesmas funções extras: criar prova ou simulado, montar o cliente/servidor e transcrever videoaulas.
+- OpenCode, Claude Code, Antigravity e Cursor têm agora os mesmos subagentes, as mesmas regras e as mesmas funções extras: criar prova ou simulado, montar o cliente/servidor e transcrever videoaulas.
 - O **ponytail**, que mantém o código o mais simples possível, deixou de ser só do OpenCode e foi para as outras três. No Cursor ele vem numa versão reduzida, sem os comandos extras.
